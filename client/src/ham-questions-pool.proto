@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package proto;
+
+message Question {
+    string sublement = 1;
+    int32 sequence = 2;
+    string chapter = 3;
+
+    string stem = 4;
+    string key = 5;
+    repeated string distractors = 6;   
+
+    string figure = 7;
+}
+
+message QuestionPool {
+    repeated Question question = 1;
+}
