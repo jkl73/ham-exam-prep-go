@@ -22,7 +22,7 @@ func GetQuestion(w http.ResponseWriter, r *http.Request) {
 		Chapter:     "CH3",
 		Stem:        "STEMM",
 		Key:         "KEYY",
-		Distractors: []string{"DIS1", "DIS2"},
+		Distractors: []string{"DIS1", "DIS2", "DIS3"},
 		Figure:      "",
 	}
 

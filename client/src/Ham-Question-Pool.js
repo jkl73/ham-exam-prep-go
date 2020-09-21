@@ -14,7 +14,7 @@ class HamQuestion extends Component {
 
         this.state = {
             stem: "",
-            choices: "",
+            choices: [],
         };
     }
 
@@ -41,8 +41,20 @@ class HamQuestion extends Component {
                 var qqq = qpb.Question.deserializeBinary(res.data)
                 console.log(qqq)
 
+                
+                console.log(qqq.getDistractorsList())
+                var distractorsl = qqq.getDistractorsList()
+                console.log(qqq.getStem())
+                console.log(qqq.getKey())
+
+                // select random
+                let keyloc = Math.floor(Math.random()*4)
+                distractorsl.splice(keyloc,0, qqq.getKey())
+                console.log(keyloc)
+
                 this.setState({
-                    stem: qqq.getStem()
+                    stem: qqq.getStem(),
+                    choices: distractorsl,
                 });
                 
                 // this.setState({
@@ -59,26 +71,26 @@ class HamQuestion extends Component {
                 //                 <div style={{ wordWrap: "break-word" }}>{choice.task}</div>
                 //               </Card.Header>
             
-                //               <Card.Meta textAlign="right">
-                //                 <Icon
-                //                   name="check circle"
-                //                   color="green"
-                //                 //   onClick={() => this.updateTask(item._id)}
-                //                 />
-                //                 <span style={{ paddingRight: 10 }}>Done</span>
-                //                 <Icon
-                //                   name="undo"
-                //                   color="yellow"
-                //                 //   onClick={() => this.undoTask(item._id)}
-                //                 />
-                //                 <span style={{ paddingRight: 10 }}>Undo</span>
-                //                 <Icon
-                //                   name="delete"
-                //                   color="red"
-                //                 //   onClick={() => this.deleteTask(item._id)}
-                //                 />
-                //                 <span style={{ paddingRight: 10 }}>Delete</span>
-                //               </Card.Meta>
+                            //   <Card.Meta textAlign="right">
+                            //     <Icon
+                            //       name="check circle"
+                            //       color="green"
+                            //     //   onClick={() => this.updateTask(item._id)}
+                            //     />
+                            //     <span style={{ paddingRight: 10 }}>Done</span>
+                            //     <Icon
+                            //       name="undo"
+                            //       color="yellow"
+                            //     //   onClick={() => this.undoTask(item._id)}
+                            //     />
+                            //     <span style={{ paddingRight: 10 }}>Undo</span>
+                            //     <Icon
+                            //       name="delete"
+                            //       color="red"
+                            //     //   onClick={() => this.deleteTask(item._id)}
+                            //     />
+                            //     <span style={{ paddingRight: 10 }}>Delete</span>
+                            //   </Card.Meta>
                 //             </Card.Content>
                 //           </Card>
                 //         );
@@ -97,7 +109,7 @@ class HamQuestion extends Component {
           <div>
             <div className="row">
               <Header className="header" as="h2">
-                TO DO LIST
+                HAM General Exam Questions Pool
               </Header>
             </div>
             <div className="row">
@@ -114,15 +126,88 @@ class HamQuestion extends Component {
               </Form>
             </div>
             <div className="row">
-              <Card.Group>
+                <Card.Group>
                     <Card color="yellow" fluid>
                         <Card.Content>
-                            <Card.Header textAlign="left">
+                            <Card.Header textAlign="center">
                                 <div style={{ wordWrap: "break-word" }}>{this.state.stem}</div>
                             </Card.Header>
-                        </Card.Content>
+                            <Card color="grey" fluid>
+                                <Card.Content>
+                                    <Card.Header textAlign="center">
+                                        <div style={{ wordWrap: "break-word" }}>{this.state.choices[0]}</div>
+                                    </Card.Header>
+                                    <Card.Meta textAlign="right">
+                                        <Icon
+                                          name="delete"
+                                          color="red"
+                                          // onClick={() => this.deleteTask(item._id)}
+                                        />
+                                        <span style={{ paddingRight: 10 }}>Delete</span>
+                                    </Card.Meta>
+                                </Card.Content>
+                            </Card>
+
+                            <Card color="grey" fluid>
+                                <Card.Content>
+                                    <Card.Header textAlign="center">
+                                        <div style={{ wordWrap: "break-word" }}>{this.state.choices[1]}</div>
+                                    </Card.Header>
+                                    <Card.Meta textAlign="right">
+                                        <Icon
+                                          name="delete"
+                                          color="red"
+                                          // onClick={() => this.deleteTask(item._id)}
+                                        />
+                                        <span style={{ paddingRight: 10 }}>Delete</span>
+                                    </Card.Meta>
+                                </Card.Content>
+                            </Card>
+
+                            <Card color="grey" fluid>
+                                <Card.Content>
+                                    <Card.Header textAlign="center">
+                                        <div style={{ wordWrap: "break-word" }}>{this.state.choices[2]}</div>
+                                    </Card.Header>
+                                    <Card.Meta textAlign="right">
+                                        <Icon
+                                          name="delete"
+                                          color="red"
+                                          // onClick={() => this.deleteTask(item._id)}
+                                        />
+                                        <span style={{ paddingRight: 10 }}>Delete</span>
+                                    </Card.Meta>
+                                </Card.Content>
+                            </Card>
+
+                            <Card color="grey" fluid>
+                                <Card.Content>
+                                    <Card.Header textAlign="center">
+                                        <div style={{ wordWrap: "break-word" }}>{this.state.choices[3]}</div>
+                                    </Card.Header>
+                                    <Card.Meta textAlign="right">
+                                        <Icon
+                                          name="delete"
+                                          color="red"
+                                          // onClick={() => this.deleteTask(item._id)}
+                                        />
+                                        <span style={{ paddingRight: 10 }}>Delete</span>
+                                    </Card.Meta>
+                                </Card.Content>
+                            </Card>
+
+
+                            <Card.Meta textAlign="right">     
+                                <Icon
+                                  name="delete"
+                                  color="red"
+                                  // onClick={() => this.deleteTask(item._id)}
+                                />
+                                <span style={{ paddingRight: 10 }}>Delete</span>
+                            </Card.Meta>
+                        </Card.Content>    
                     </Card>
-              </Card.Group>
+                </Card.Group>
             </div>
           </div>
         );
