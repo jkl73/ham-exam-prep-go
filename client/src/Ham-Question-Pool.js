@@ -15,6 +15,7 @@ class HamQuestion extends Component {
         this.state = {
             stem: "",
             choices: [],
+            cardsColor: ["grey","grey","grey","grey"],
         };
     }
 
@@ -23,14 +24,11 @@ class HamQuestion extends Component {
         this.getQuestion()
     }
 
-    // onChange = event => {
-    //     this.setState
-    // }
-
-
-    // onSubmit = () => {
-    //     let { s } = this.state
-    // }
+    cardClicked = (which) => {
+        this.setState({
+            cardsColor: ["green","grey","grey","grey"],
+        });
+    };
 
     getQuestion = () => {
         axios.get(endpoint + "/api/newq", {responseType:'arraybuffer'}).then(res => {
@@ -56,46 +54,6 @@ class HamQuestion extends Component {
                     stem: qqq.getStem(),
                     choices: distractorsl,
                 });
-                
-                // this.setState({
-                //     choices: res.data.map(choice => {
-                //         let color = "yellow";
-            
-                //         if (choice.status) {
-                //           color = "green";
-                //         }
-                //         return (
-                //           <Card key={choice._id} color={color} fluid>
-                //             <Card.Content>
-                //               <Card.Header textAlign="left">
-                //                 <div style={{ wordWrap: "break-word" }}>{choice.task}</div>
-                //               </Card.Header>
-            
-                            //   <Card.Meta textAlign="right">
-                            //     <Icon
-                            //       name="check circle"
-                            //       color="green"
-                            //     //   onClick={() => this.updateTask(item._id)}
-                            //     />
-                            //     <span style={{ paddingRight: 10 }}>Done</span>
-                            //     <Icon
-                            //       name="undo"
-                            //       color="yellow"
-                            //     //   onClick={() => this.undoTask(item._id)}
-                            //     />
-                            //     <span style={{ paddingRight: 10 }}>Undo</span>
-                            //     <Icon
-                            //       name="delete"
-                            //       color="red"
-                            //     //   onClick={() => this.deleteTask(item._id)}
-                            //     />
-                            //     <span style={{ paddingRight: 10 }}>Delete</span>
-                            //   </Card.Meta>
-                //             </Card.Content>
-                //           </Card>
-                //         );
-                //     })
-                // });
             } else {
                 this.setState({
                     stem: "nono"
@@ -113,37 +71,24 @@ class HamQuestion extends Component {
               </Header>
             </div>
             <div className="row">
-              <Form onSubmit={this.onSubmit}>
-                {/* <Input
-                  type="text"
-                  name="task"
-                  onChange={this.onChange}
-                  value={this.state.task}
-                  fluid
-                  placeholder="Create Task"
-                />
-                <Button >Create Task</Button> */}
-              </Form>
-            </div>
-            <div className="row">
                 <Card.Group>
                     <Card color="yellow" fluid>
                         <Card.Content>
                             <Card.Header textAlign="center">
                                 <div style={{ wordWrap: "break-word" }}>{this.state.stem}</div>
                             </Card.Header>
-                            <Card color="grey" fluid>
-                                <Card.Content>
+                            <Card color={this.state.cardsColor[0]} fluid onClick={() => this.cardClicked(0)}>
+                                <Card.Content style={{ background: this.state.cardsColor[0] }}>
                                     <Card.Header textAlign="center">
                                         <div style={{ wordWrap: "break-word" }}>{this.state.choices[0]}</div>
                                     </Card.Header>
                                     <Card.Meta textAlign="right">
-                                        <Icon
+                                        {/* <Icon
                                           name="delete"
                                           color="red"
-                                          // onClick={() => this.deleteTask(item._id)}
-                                        />
-                                        <span style={{ paddingRight: 10 }}>Delete</span>
+                                          onClick={() => this.deleteTask(item._id)}
+                                        /> */}
+                                        {/* <span style={{ paddingRight: 10 }}>Delete</span> */}
                                     </Card.Meta>
                                 </Card.Content>
                             </Card>
@@ -154,12 +99,12 @@ class HamQuestion extends Component {
                                         <div style={{ wordWrap: "break-word" }}>{this.state.choices[1]}</div>
                                     </Card.Header>
                                     <Card.Meta textAlign="right">
-                                        <Icon
+                                        {/* <Icon
                                           name="delete"
                                           color="red"
-                                          // onClick={() => this.deleteTask(item._id)}
+                                          onClick={() => this.deleteTask(item._id)}
                                         />
-                                        <span style={{ paddingRight: 10 }}>Delete</span>
+                                        <span style={{ paddingRight: 10 }}>Delete</span> */}
                                     </Card.Meta>
                                 </Card.Content>
                             </Card>
@@ -170,12 +115,12 @@ class HamQuestion extends Component {
                                         <div style={{ wordWrap: "break-word" }}>{this.state.choices[2]}</div>
                                     </Card.Header>
                                     <Card.Meta textAlign="right">
-                                        <Icon
+                                        {/* <Icon
                                           name="delete"
                                           color="red"
-                                          // onClick={() => this.deleteTask(item._id)}
-                                        />
-                                        <span style={{ paddingRight: 10 }}>Delete</span>
+                                          onClick={() => this.deleteTask(item._id)}
+                                        /> */}
+                                        {/* <span stylse={{ paddingRight: 10 }}>Delete</span> */}
                                     </Card.Meta>
                                 </Card.Content>
                             </Card>
@@ -186,12 +131,12 @@ class HamQuestion extends Component {
                                         <div style={{ wordWrap: "break-word" }}>{this.state.choices[3]}</div>
                                     </Card.Header>
                                     <Card.Meta textAlign="right">
-                                        <Icon
+                                        {/* <Icon
                                           name="delete"
                                           color="red"
-                                          // onClick={() => this.deleteTask(item._id)}
-                                        />
-                                        <span style={{ paddingRight: 10 }}>Delete</span>
+                                          onClick={() => this.deleteTask(item._id)}
+                                        /> */}
+                                        {/* <span style={{ paddingRight: 10 }}>Delete</span> */}
                                     </Card.Meta>
                                 </Card.Content>
                             </Card>
