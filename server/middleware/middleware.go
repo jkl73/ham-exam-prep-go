@@ -31,7 +31,6 @@ func GetQuestion(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	payload := getOneRandQuestion()
-
 	msg, err := pb.Marshal(payload)
 
 	if err != nil {
@@ -48,10 +47,7 @@ func GetQuestion(w http.ResponseWriter, r *http.Request) {
 }
 
 func getOneRandQuestion() *proto.Question {
-
 	nsbl := rand.Intn(len(q.Pool.Subl))
 	nq := rand.Intn(len(q.Pool.Subl[nsbl].Qlist))
-
-	fmt.Println(q.Pool.Subl[nsbl].Qlist[nq])
 	return q.Pool.Subl[nsbl].Qlist[nq]
 }
