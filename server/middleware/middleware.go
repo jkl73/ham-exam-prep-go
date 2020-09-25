@@ -2,31 +2,37 @@ package middleware
 
 import (
 	"fmt"
+	"math/rand"
 
 	pb "google.golang.org/protobuf/proto"
 	// "encoding/json"
 
 	"net/http"
 
+	hamquestions "github.com/lulumel0n/arrl-ham-questions-pool-proto/ham-questions"
 	"github.com/lulumel0n/arrl-ham-questions-pool-proto/proto"
 )
+
+const questionsTxt = "./server/raw-questions/2019-2023_general.txt"
+
+var q = initQ()
+
+func initQ() *hamquestions.HamQuestion {
+	q, err := hamquestions.NewHamQuestion("", questionsTxt)
+	if err != nil {
+		panic("Cannot init question pool")
+	}
+	return q
+}
 
 // GetQuestion get one question
 func GetQuestion(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Context-Type", "application/octet-stream'") // send
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
-	payload := proto.Question{
-		Sublement:   "G1B",
-		Sequence:    3,
-		Chapter:     "[97.3(a)(9)]",
-		Stem:        "Which of the following is a purpose of a beacon station as identified in the FCC rules?",
-		Key:         "Observation of propagation and reception",
-		Distractors: []string{"Automatic identification of repeaters", "Transmission of bulletins of general interest to Amateur Radio licensees", "Identifying net frequencies"},
-		Figure:      "",
-	}
+	payload := getOneRandQuestion()
 
-	msg, err := pb.Marshal(&payload)
+	msg, err := pb.Marshal(payload)
 
 	if err != nil {
 		fmt.Println(err)
@@ -34,10 +40,18 @@ func GetQuestion(w http.ResponseWriter, r *http.Request) {
 
 	bytesSent, err := w.Write(msg)
 	if err != nil {
-		fmt.Println("fial to send")
+		fmt.Println("failed to send")
+		fmt.Println(err)
+	} else {
+		fmt.Printf("Sent %d\n", bytesSent)
 	}
+}
 
-	fmt.Printf("Sent %d\n", bytesSent)
+func getOneRandQuestion() *proto.Question {
 
-	// json.NewEncoder(w).Encode(payload)
+	nsbl := rand.Intn(len(q.Pool.Subl))
+	nq := rand.Intn(len(q.Pool.Subl[nsbl].Qlist))
+
+	fmt.Println(q.Pool.Subl[nsbl].Qlist[nq])
+	return q.Pool.Subl[nsbl].Qlist[nq]
 }
