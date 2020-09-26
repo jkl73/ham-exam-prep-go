@@ -9,5 +9,6 @@ import (
 func Router() *mux.Router {
 	router := mux.NewRouter()
 	router.HandleFunc("/api/newq", middleware.GetQuestion).Methods("GET", "OPTIONS")
+	router.HandleFunc("/api/exam", middleware.GetSimExam).Methods("GET", "OPTIONS")
 	return router
 }
