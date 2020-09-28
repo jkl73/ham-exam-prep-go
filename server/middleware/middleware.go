@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"fmt"
+	"io/ioutil"
 	"math/rand"
 
 	pb "google.golang.org/protobuf/proto"
@@ -73,8 +74,29 @@ func getOneRandQuestion() *proto.Question {
 	// get the first one
 	for _, qList := range q.Pool.Subl[nsbl].GetGroupMap() {
 		nq := rand.Intn(len(qList.GetQuestions()))
-
 		return qList.GetQuestions()[nq]
 	}
 	return nil
+}
+
+func ReturnImage(w http.ResponseWriter, r *http.Request) {
+
+	data, err := ioutil.ReadFile("./image/2019-2023_general-G7-1.jpeg")
+
+	if err != nil {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+
+	w.Header().Set("Context-Type", "image/jpeg") // send
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	bytesSent, err := w.Write(data)
+
+	if err != nil {
+		fmt.Println("Failed to send")
+		fmt.Println(err)
+	} else {
+		fmt.Printf("Sent image %d\n", bytesSent)
+	}
 }

@@ -57,6 +57,14 @@ class HamExamEmu extends Component {
         })
     }
 
+    radioCircleClicked = (which) =>{
+        this.setState({
+            currentShowingQuestion: which,
+            questionInfo: this.state.questionsInfoAndState[which].questionInfo,
+            cardsColor: this.state.questionsInfoAndState[which].questionInfo.cardsColor,
+        })
+    }
+
     submitCurrentAnswer = () => {
         let correct = 0
 
@@ -97,6 +105,7 @@ class HamExamEmu extends Component {
                             section : examqlist[i].getSection(),
                             seq: examqlist[i].getSequence(),
                             stem: examqlist[i].getStem(),
+                            figure: examqlist[i].getFigure(),
                             choices: distractorsl,
                             key: keyloc,
                             cardsColor: ["transparent","transparent","transparent","transparent"],
@@ -117,7 +126,6 @@ class HamExamEmu extends Component {
             })
         });
     };
-
 
     backQuestion = () => {
         let newindex = this.state.currentShowingQuestion-1
@@ -154,7 +162,7 @@ class HamExamEmu extends Component {
                                     <Box display="flex" flexWrap="wrap">
                                         {this.state.questionsInfoAndState.map((value, index) => {
                                             return (
-                                            <Box key={index}>
+                                            <Box key={index} onClick={() => this.radioCircleClicked(index)} >
                                                 {this.state.displaymode == 0
                                                     // answering mode
                                                     ? this.state.currentShowingQuestion == index
@@ -198,6 +206,16 @@ class HamExamEmu extends Component {
                                 <div style={{ fontSize: "15px", wordWrap: "break-word" }}>{this.state.questionInfo.subl}{this.state.questionInfo.section}{this.state.questionInfo.seq}</div>
                                 <div style={{ fontSize: "20px", wordWrap: "break-word" }}>{this.state.questionInfo.stem}</div>
                             </Card.Header>
+
+                            {this.state.questionInfo.figure == "2019-2023_general-G7-1.png" &&
+                            <Box>    
+                                <img style={{ maxWidth: "100%" }}
+                                src="http://192.168.0.82:8080/image"
+                                alt="Schematic diagram for this question"
+                                />
+                            </Box>
+                            }
+
                             <Card fluid onClick={() => this.cardClicked(0)}>
                                 <Card.Content style={{ background: this.state.questionInfo.cardsColor[0] }}>
                                     <Card.Header textAlign="left">

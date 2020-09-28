@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Card } from "semantic-ui-react";
+import Box from '@material-ui/core/Box';
 
 
 let endpoint = "http://192.168.0.82:8080";
@@ -85,6 +86,7 @@ class HamPractice extends Component {
                         stem: qqq.getStem(),
                         choices: distractorsl,
                         key: keyloc,
+                        figure: qqq.getFigure(),
                     },
                     cardsColor: ["transparent","transparent","transparent","transparent"],
                     answerSelected: -1,
@@ -96,7 +98,6 @@ class HamPractice extends Component {
             }
         });
     };
-
 
     backQuestion = () => {
         if (backstack.length > 0) {
@@ -125,13 +126,11 @@ class HamPractice extends Component {
         }
     };
 
-
     handleTabChange = (event, newValue) => {
         this.setState({
             tabValue: newValue
         })
     };
-
 
     render() {
         return (
@@ -143,6 +142,16 @@ class HamPractice extends Component {
                                 <div style={{ fontSize: "15px", wordWrap: "break-word" }}>{this.state.questionInfo.subl} {this.state.questionInfo.section} {this.state.questionInfo.seq}</div>
                                 <div style={{ fontSize: "20px", wordWrap: "break-word" }}>{this.state.questionInfo.stem}</div>
                             </Card.Header>
+                            
+                            {this.state.questionInfo.figure == "2019-2023_general-G7-1.png" &&
+                            <Box>    
+                                <img style={{ maxWidth: "100%" }}
+                                src="http://192.168.0.82:8080/image"
+                                alt="Schematic diagram for this question"
+                                />
+                            </Box>
+                            }
+
                             <Card fluid onClick={() => this.cardClicked(0)}>
                                 <Card.Content style={{ background: this.state.cardsColor[0] }}>
                                     <Card.Header textAlign="left">
