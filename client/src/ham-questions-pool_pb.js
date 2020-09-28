@@ -38,7 +38,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.proto.Question.repeatedFields_ = [6];
+proto.proto.Question.repeatedFields_ = [7];
 
 
 
@@ -70,12 +70,13 @@ proto.proto.Question.prototype.toObject = function(opt_includeInstance) {
 proto.proto.Question.toObject = function(includeInstance, msg) {
   var f, obj = {
     sublement: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sequence: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    chapter: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    stem: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    key: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    distractorsList: jspb.Message.getRepeatedField(msg, 6),
-    figure: jspb.Message.getFieldWithDefault(msg, 7, "")
+    section: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    sequence: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    chapter: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    stem: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    key: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    distractorsList: jspb.Message.getRepeatedField(msg, 7),
+    figure: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -117,26 +118,30 @@ proto.proto.Question.deserializeBinaryFromReader = function(msg, reader) {
       msg.setSublement(value);
       break;
     case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSection(value);
+      break;
+    case 3:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setSequence(value);
       break;
-    case 3:
+    case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setChapter(value);
       break;
-    case 4:
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setStem(value);
       break;
-    case 5:
+    case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setKey(value);
       break;
-    case 6:
+    case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.addDistractors(value);
       break;
-    case 7:
+    case 8:
       var value = /** @type {string} */ (reader.readString());
       msg.setFigure(value);
       break;
@@ -176,45 +181,52 @@ proto.proto.Question.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getSection();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
   f = message.getSequence();
   if (f !== 0) {
     writer.writeInt32(
-      2,
+      3,
       f
     );
   }
   f = message.getChapter();
   if (f.length > 0) {
     writer.writeString(
-      3,
+      4,
       f
     );
   }
   f = message.getStem();
   if (f.length > 0) {
     writer.writeString(
-      4,
+      5,
       f
     );
   }
   f = message.getKey();
   if (f.length > 0) {
     writer.writeString(
-      5,
+      6,
       f
     );
   }
   f = message.getDistractorsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
-      6,
+      7,
       f
     );
   }
   f = message.getFigure();
   if (f.length > 0) {
     writer.writeString(
-      7,
+      8,
       f
     );
   }
@@ -237,77 +249,92 @@ proto.proto.Question.prototype.setSublement = function(value) {
 
 
 /**
- * optional int32 Sequence = 2;
+ * optional string Section = 2;
+ * @return {string}
+ */
+proto.proto.Question.prototype.getSection = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.proto.Question.prototype.setSection = function(value) {
+  jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional int32 Sequence = 3;
  * @return {number}
  */
 proto.proto.Question.prototype.getSequence = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
 /** @param {number} value */
 proto.proto.Question.prototype.setSequence = function(value) {
-  jspb.Message.setProto3IntField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional string Chapter = 3;
+ * optional string Chapter = 4;
  * @return {string}
  */
 proto.proto.Question.prototype.getChapter = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/** @param {string} value */
-proto.proto.Question.prototype.setChapter = function(value) {
-  jspb.Message.setProto3StringField(this, 3, value);
-};
-
-
-/**
- * optional string Stem = 4;
- * @return {string}
- */
-proto.proto.Question.prototype.getStem = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /** @param {string} value */
-proto.proto.Question.prototype.setStem = function(value) {
+proto.proto.Question.prototype.setChapter = function(value) {
   jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional string Key = 5;
+ * optional string Stem = 5;
  * @return {string}
  */
-proto.proto.Question.prototype.getKey = function() {
+proto.proto.Question.prototype.getStem = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /** @param {string} value */
-proto.proto.Question.prototype.setKey = function(value) {
+proto.proto.Question.prototype.setStem = function(value) {
   jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
 /**
- * repeated string Distractors = 6;
+ * optional string Key = 6;
+ * @return {string}
+ */
+proto.proto.Question.prototype.getKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/** @param {string} value */
+proto.proto.Question.prototype.setKey = function(value) {
+  jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * repeated string Distractors = 7;
  * @return {!Array<string>}
  */
 proto.proto.Question.prototype.getDistractorsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 6));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 7));
 };
 
 
 /** @param {!Array<string>} value */
 proto.proto.Question.prototype.setDistractorsList = function(value) {
-  jspb.Message.setField(this, 6, value || []);
+  jspb.Message.setField(this, 7, value || []);
 };
 
 
@@ -316,7 +343,7 @@ proto.proto.Question.prototype.setDistractorsList = function(value) {
  * @param {number=} opt_index
  */
 proto.proto.Question.prototype.addDistractors = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 6, value, opt_index);
+  jspb.Message.addToRepeatedField(this, 7, value, opt_index);
 };
 
 
@@ -326,17 +353,17 @@ proto.proto.Question.prototype.clearDistractorsList = function() {
 
 
 /**
- * optional string Figure = 7;
+ * optional string Figure = 8;
  * @return {string}
  */
 proto.proto.Question.prototype.getFigure = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
 
 /** @param {string} value */
 proto.proto.Question.prototype.setFigure = function(value) {
-  jspb.Message.setProto3StringField(this, 7, value);
+  jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
@@ -394,7 +421,7 @@ proto.proto.QuestionList.prototype.toObject = function(opt_includeInstance) {
  */
 proto.proto.QuestionList.toObject = function(includeInstance, msg) {
   var f, obj = {
-    questionList: jspb.Message.toObjectList(msg.getQuestionList(),
+    questionsList: jspb.Message.toObjectList(msg.getQuestionsList(),
     proto.proto.Question.toObject, includeInstance)
   };
 
@@ -435,7 +462,7 @@ proto.proto.QuestionList.deserializeBinaryFromReader = function(msg, reader) {
     case 1:
       var value = new proto.proto.Question;
       reader.readMessage(value,proto.proto.Question.deserializeBinaryFromReader);
-      msg.addQuestion(value);
+      msg.addQuestions(value);
       break;
     default:
       reader.skipField();
@@ -466,7 +493,7 @@ proto.proto.QuestionList.prototype.serializeBinary = function() {
  */
 proto.proto.QuestionList.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getQuestionList();
+  f = message.getQuestionsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
@@ -478,17 +505,17 @@ proto.proto.QuestionList.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * repeated Question Question = 1;
+ * repeated Question Questions = 1;
  * @return {!Array<!proto.proto.Question>}
  */
-proto.proto.QuestionList.prototype.getQuestionList = function() {
+proto.proto.QuestionList.prototype.getQuestionsList = function() {
   return /** @type{!Array<!proto.proto.Question>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.proto.Question, 1));
 };
 
 
 /** @param {!Array<!proto.proto.Question>} value */
-proto.proto.QuestionList.prototype.setQuestionList = function(value) {
+proto.proto.QuestionList.prototype.setQuestionsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -498,13 +525,13 @@ proto.proto.QuestionList.prototype.setQuestionList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.proto.Question}
  */
-proto.proto.QuestionList.prototype.addQuestion = function(opt_value, opt_index) {
+proto.proto.QuestionList.prototype.addQuestions = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.proto.Question, opt_index);
 };
 
 
-proto.proto.QuestionList.prototype.clearQuestionList = function() {
-  this.setQuestionList([]);
+proto.proto.QuestionList.prototype.clearQuestionsList = function() {
+  this.setQuestionsList([]);
 };
 
 
@@ -688,19 +715,12 @@ proto.proto.CompleteQuestionPool.prototype.clearSublList = function() {
  * @constructor
  */
 proto.proto.Sublement = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.proto.Sublement.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.proto.Sublement, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.proto.Sublement.displayName = 'proto.proto.Sublement';
 }
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.proto.Sublement.repeatedFields_ = [2];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -731,8 +751,7 @@ proto.proto.Sublement.prototype.toObject = function(opt_includeInstance) {
 proto.proto.Sublement.toObject = function(includeInstance, msg) {
   var f, obj = {
     sublementid: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    qlistList: jspb.Message.toObjectList(msg.getQlistList(),
-    proto.proto.Question.toObject, includeInstance)
+    groupmapMap: (f = msg.getGroupmapMap()) ? f.toObject(includeInstance, proto.proto.QuestionList.toObject) : []
   };
 
   if (includeInstance) {
@@ -774,9 +793,10 @@ proto.proto.Sublement.deserializeBinaryFromReader = function(msg, reader) {
       msg.setSublementid(value);
       break;
     case 2:
-      var value = new proto.proto.Question;
-      reader.readMessage(value,proto.proto.Question.deserializeBinaryFromReader);
-      msg.addQlist(value);
+      var value = msg.getGroupmapMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.proto.QuestionList.deserializeBinaryFromReader, "");
+         });
       break;
     default:
       reader.skipField();
@@ -814,13 +834,9 @@ proto.proto.Sublement.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getQlistList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      2,
-      f,
-      proto.proto.Question.serializeBinaryToWriter
-    );
+  f = message.getGroupmapMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.proto.QuestionList.serializeBinaryToWriter);
   }
 };
 
@@ -841,33 +857,20 @@ proto.proto.Sublement.prototype.setSublementid = function(value) {
 
 
 /**
- * repeated Question Qlist = 2;
- * @return {!Array<!proto.proto.Question>}
+ * map<string, QuestionList> GroupMap = 2;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,!proto.proto.QuestionList>}
  */
-proto.proto.Sublement.prototype.getQlistList = function() {
-  return /** @type{!Array<!proto.proto.Question>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.proto.Question, 2));
+proto.proto.Sublement.prototype.getGroupmapMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,!proto.proto.QuestionList>} */ (
+      jspb.Message.getMapField(this, 2, opt_noLazyCreate,
+      proto.proto.QuestionList));
 };
 
 
-/** @param {!Array<!proto.proto.Question>} value */
-proto.proto.Sublement.prototype.setQlistList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 2, value);
-};
-
-
-/**
- * @param {!proto.proto.Question=} opt_value
- * @param {number=} opt_index
- * @return {!proto.proto.Question}
- */
-proto.proto.Sublement.prototype.addQlist = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.proto.Question, opt_index);
-};
-
-
-proto.proto.Sublement.prototype.clearQlistList = function() {
-  this.setQlistList([]);
+proto.proto.Sublement.prototype.clearGroupmapMap = function() {
+  this.getGroupmapMap().clear();
 };
 
 

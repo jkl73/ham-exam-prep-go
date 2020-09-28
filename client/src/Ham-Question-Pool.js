@@ -1,6 +1,15 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import PropTypes from 'prop-types';
 import axios from "axios";
 import { Card, Header, Form, Input, Icon, Button } from "semantic-ui-react";
+import { AppBar } from '@material-ui/core';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import HamPractice from './Ham-Practice';
+import HamExamEmu from './Ham-Exam-Emu';
+
 
 
 let endpoint = "http://192.168.0.82:8080";
@@ -14,116 +23,53 @@ let reddd = "rgb(240,128,128)";
 let backstack = [];
 let frontstack = [];
 
-class HamQuestion extends Component {
 
+class TabPanel extends React.Component {
+    // children, value, index, ...other } = props;
+    
+    render() {
+      return (
+        <div
+            role="tabpanel"
+            hidden={this.props.value !== this.props.index}
+            id={`simple-tabpanel-${this.props.index}`}
+            aria-labelledby={`simple-tab-${this.props.index}`}
+            {...this.props.other}
+        >
+            {this.props.value === this.props.index && (
+            <Box p={0}>
+                {this.props.children}
+            </Box>
+            )}
+        </div>
+      )
+    }
+}
+  
+TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.any.isRequired,
+    value: PropTypes.any.isRequired,
+};
+
+
+class HamQuestion extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            questionInfo: {
-                stem:"",
-                choices: [],
-                key: -1,
-            },
-            cardsColor: ["transparent","transparent","transparent","transparent"],            
-            answerSelected: -1,
+            tabValue: 0,
         };
     }
 
     componentDidMount() {
-        this.getQuestion()
     }
 
-    cardClicked = (which) => {
-        let colrs = ["transparent","transparent","transparent","transparent"];
-        colrs[which] = bluuu
-        
+    handleTabChange = (event, newValue) => {
         this.setState({
-            cardsColor: colrs,
-            answerSelected: which
-        });
+            tabValue: newValue
+        })
     };
-
-    showAnswer = () => {
-        let colrs = ["transparent","transparent","transparent","transparent"];
-        colrs[this.state.questionInfo.key] = palegreen
-
-        this.setState({
-            cardsColor: colrs,
-        });
-    }
-
-    checkAnswer = () => {
-        let colrs = this.state.cardsColor
-
-        if (this.state.answerSelected == this.state.questionInfo.key) {
-            colrs[this.state.questionInfo.key] = palegreen
-        } else {
-            colrs[this.state.answerSelected ] = reddd
-            colrs[this.state.questionInfo.key] = palegreen
-        }
-
-        this.setState({
-            cardsColor: colrs,
-        });
-    }
-
-    getQuestion = () => {
-        axios.get(endpoint + "/api/newq", {responseType:'arraybuffer'}).then(res => {
-            if (res.data) {
-                var qqq = qpb.Question.deserializeBinary(res.data)
-                var distractorsl = qqq.getDistractorsList()
-
-                // select random as key
-                let keyloc = Math.floor(Math.random()*4)
-                distractorsl.splice(keyloc,0, qqq.getKey())
-
-                this.setState({
-                    questionInfo: {
-                        subl : qqq.getSublement(),
-                        seq: qqq.getSequence(),
-                        stem: qqq.getStem(),
-                        choices: distractorsl,
-                        key: keyloc,
-                    },
-                    cardsColor: ["transparent","transparent","transparent","transparent"],
-                    answerSelected: -1,
-                });
-            } else {
-                this.setState({
-                    stem: "nono"
-                });
-            }
-        });
-    };
-
-
-    backQuestion= () => {
-        if (backstack.length > 0) {
-            frontstack.push(this.state.questionInfo)
-            let poped = backstack.pop()
-            this.setState({
-                questionInfo: poped,
-                cardsColor: ["transparent","transparent","transparent","transparent"],
-                answerSelected: -1,
-            })
-        }
-    }
-
-    nextQuestion = () => {
-        if (frontstack.length <= 0) {
-            this.getQuestion()
-            backstack.push(this.state.questionInfo)
-        } else {
-            let poped = frontstack.pop()
-            this.setState({
-                questionInfo: poped,
-                cardsColor: ["transparent","transparent","transparent","transparent"],
-                answerSelected: -1,
-            })
-            backstack.push(this.state.questionInfo)
-        }
-    }
 
     render() {
         return (
@@ -133,99 +79,19 @@ class HamQuestion extends Component {
                 HAM General Exam Practice 📻
               </Header>
             </div>
-            <div className="row">
-                <Card.Group>
-                    <Card color="yellow" fluid>
-                        <Card.Content>
-                            <Card.Header textAlign="left">
-        <div style={{ fontSize: "15px", wordWrap: "break-word" }}>{this.state.questionInfo.subl} {this.state.questionInfo.seq}</div>
-                                <div style={{ fontSize: "20px", wordWrap: "break-word" }}>{this.state.questionInfo.stem}</div>
-                            </Card.Header>
-                            <Card fluid onClick={() => this.cardClicked(0)}>
-                                <Card.Content style={{ background: this.state.cardsColor[0] }}>
-                                    <Card.Header textAlign="left">
-                                        <div style={{ wordWrap: "break-word" }}>{this.state.questionInfo.choices[0]}</div>
-                                    </Card.Header>
-                                    <Card.Meta textAlign="right">
-                                        {/* <Icon
-                                          name="delete"
-                                          color="red"
-                                          onClick={() => this.deleteTask(item._id)}
-                                        /> */}
-                                        {/* <span style={{ paddingRight: 10 }}>Delete</span> */}
-                                    </Card.Meta>
-                                </Card.Content>
-                            </Card>
+            <AppBar position="static">
+                <Tabs value={this.state.tabValue} onChange={this.handleTabChange} aria-label="simple tabs example">
+                <Tab label="Practice"/>
+                <Tab label="Exam Emulator" />
+                </Tabs>
+            </AppBar>
+            <TabPanel value={this.state.tabValue} index={0}>
+            <HamPractice></HamPractice>
 
-                            <Card fluid onClick={() => this.cardClicked(1)}>
-                                <Card.Content style={{ background: this.state.cardsColor[1] }}>
-                                    <Card.Header textAlign="left">
-                                        <div style={{ wordWrap: "break-word" }}>{this.state.questionInfo.choices[1]}</div>
-                                    </Card.Header>
-                                    <Card.Meta textAlign="right">
-                                        {/* <Icon
-                                          name="delete"
-                                          color="red"
-                                          onClick={() => this.deleteTask(item._id)}
-                                        />
-                                        <span style={{ paddingRight: 10 }}>Delete</span> */}
-                                    </Card.Meta>
-                                </Card.Content>
-                            </Card>
-
-                            <Card fluid onClick={() => this.cardClicked(2)}>
-                            <Card.Content style={{ background: this.state.cardsColor[2] }}>
-                                    <Card.Header textAlign="left">
-                                        <div style={{ wordWrap: "break-word" }}>{this.state.questionInfo.choices[2]}</div>
-                                    </Card.Header>
-                                    <Card.Meta textAlign="right">
-                                        {/* <Icon
-                                          name="delete"
-                                          color="red"
-                                          onClick={() => this.deleteTask(item._id)}
-                                        /> */}
-                                        {/* <span stylse={{ paddingRight: 10 }}>Delete</span> */}
-                                    </Card.Meta>
-                                </Card.Content>
-                            </Card>
-
-                            <Card fluid onClick={() => this.cardClicked(3)}>
-                            <Card.Content style={{ background: this.state.cardsColor[3] }}>
-                                    <Card.Header textAlign="left">
-                                        <div style={{ wordWrap: "break-word" }}>{this.state.questionInfo.choices[3]}</div>
-                                    </Card.Header>
-                                    <Card.Meta textAlign="right">
-                                        {/* <Icon
-                                          name="delete"
-                                          color="red"
-                                          onClick={() => this.deleteTask(item._id)}
-                                        /> */}
-                                        {/* <span style={{ paddingRight: 10 }}>Delete</span> */}
-                                    </Card.Meta>
-                                </Card.Content>
-                            </Card>
-
-                            <Card.Meta textAlign="right">
-                            <div className="ui buttons">
-                                <div className="ui blue basic button" onClick={() => this.backQuestion()} >Previous Questions</div>
-                                <div className="ui red basic button" onClick={() => this.showAnswer()}>Don't Know</div>
-                                <div className="ui green basic button" onClick={() => this.checkAnswer()}>Confirm Answer</div>
-                                <div className="ui blue basic button" onClick={() => this.nextQuestion()}>Next Question</div>
-                            </div>
-                            </Card.Meta>
-                            
-                            {/* <Card.Meta textAlign="right">     
-                                <Icon
-                                  name="delete"
-                                  color="red"
-                                  // onClick={() => this.deleteTask(item._id)}
-                                />
-                                <span style={{ paddingRight: 10 }}>Delete</span>
-                            </Card.Meta> */}
-                        </Card.Content>    
-                    </Card>
-                </Card.Group>
-            </div>
+            </TabPanel>
+            <TabPanel value={this.state.tabValue} index={1}>
+            <HamExamEmu></HamExamEmu>
+            </TabPanel>
           </div>
         );
     }
