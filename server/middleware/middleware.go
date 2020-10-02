@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"math/rand"
+	"strings"
 
 	pb "google.golang.org/protobuf/proto"
 
@@ -14,6 +15,8 @@ import (
 )
 
 const questionsTxt = "./server/raw-questions/2019-2023_general.txt"
+
+const qchapter = "chapter"
 
 var q = initQ()
 
@@ -43,6 +46,47 @@ func GetQuestion(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 	}
 	sendGeneric(w, r, msg)
+}
+
+// GetQuestionV2 can accept params (charpter) to return a specific domain
+func GetQuestionV2(w http.ResponseWriter, r *http.Request) {
+	chs := r.URL.Query()[qchapter]
+
+	// if not specific chatper param, just return a random question
+	if len(chs) == 0 {
+		GetQuestion(w, r)
+		return
+	}
+
+	choseChs := chs[rand.Intn(len(chs))]
+	qn := rand.Intn(len(q.Pool.Subl[choseChs[1]-'1'].GetGroupMap()[strings.ToUpper(string(choseChs[2]))].GetQuestions()))
+	question := q.Pool.Subl[choseChs[1]-'1'].GetGroupMap()[strings.ToUpper(string(choseChs[2]))].GetQuestions()[qn]
+	msg, err := pb.Marshal(question)
+	if err != nil {
+		fmt.Println(err)
+	}
+	sendGeneric(w, r, msg)
+}
+
+// ReturnImage return an image
+func ReturnImage(w http.ResponseWriter, r *http.Request) {
+	data, err := ioutil.ReadFile("./image/2019-2023_general-G7-1.jpeg")
+
+	if err != nil {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+
+	w.Header().Set("Context-Type", "image/jpeg") // send
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	bytesSent, err := w.Write(data)
+	if err != nil {
+		fmt.Println("Failed to send")
+		fmt.Println(err)
+	} else {
+		fmt.Printf("Sent image %d\n", bytesSent)
+	}
 }
 
 func sendGeneric(w http.ResponseWriter, r *http.Request, payload []byte) {
@@ -77,26 +121,4 @@ func getOneRandQuestion() *proto.Question {
 		return qList.GetQuestions()[nq]
 	}
 	return nil
-}
-
-func ReturnImage(w http.ResponseWriter, r *http.Request) {
-
-	data, err := ioutil.ReadFile("./image/2019-2023_general-G7-1.jpeg")
-
-	if err != nil {
-		w.WriteHeader(http.StatusNotFound)
-		return
-	}
-
-	w.Header().Set("Context-Type", "image/jpeg") // send
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-
-	bytesSent, err := w.Write(data)
-
-	if err != nil {
-		fmt.Println("Failed to send")
-		fmt.Println(err)
-	} else {
-		fmt.Printf("Sent image %d\n", bytesSent)
-	}
 }
