@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Card } from "semantic-ui-react";
+import { Card, Label } from "semantic-ui-react";
 import Box from '@material-ui/core/Box';
 
 
@@ -138,6 +138,26 @@ class HamPractice extends Component {
                 <Card.Group>
                     <Card color="yellow" fluid>
                         <Card.Content>
+
+                            <Box>
+                                G1 – COMMISSION’S RULES
+                                <Label color='blue' tag>
+                                    General class control operator frequency privileges; primary and secondary allocations
+                                </Label>
+                                <Label color='blue' tag>
+                                    Antenna structure limitations; good engineering and good amateur practice; beacon operation; prohibited transmissions; retransmitting radio signals
+                                </Label>
+                                <Label color='blue' tag>
+                                    Transmitter power regulations; data emission standards; 60-meter operation requirements
+                                </Label>
+                                <Label color='blue' tag>
+                                    Volunteer Examiners and Volunteer Examiner Coordinators; temporary identification; element credit
+                                </Label>
+                                <Label color='blue' tag>
+                                    Control categories; repeater regulations; third-party rules; ITU regions; automatically controlled digital station
+                                </Label>
+                            </Box>
+
                             <Card.Header textAlign="left">
                                 <div style={{ fontSize: "15px", wordWrap: "break-word" }}>{this.state.questionInfo.subl} {this.state.questionInfo.section} {this.state.questionInfo.seq}</div>
                                 <div style={{ fontSize: "20px", wordWrap: "break-word" }}>{this.state.questionInfo.stem}</div>
