@@ -101,8 +101,8 @@ class HamExamEmu extends Component {
                     distractorsl.splice(keyloc,0, examqlist[i].getKey())
 
                     examliststate.push({questionInfo: {
-                            subl : examqlist[i].getSublement(),
-                            section : examqlist[i].getSection(),
+                            subl : examqlist[i].getSubelement(),
+                            group : examqlist[i].getGroup(),
                             seq: examqlist[i].getSequence(),
                             stem: examqlist[i].getStem(),
                             figure: examqlist[i].getFigure(),
@@ -203,7 +203,7 @@ class HamExamEmu extends Component {
                             </Card.Meta>
 
                             <Card.Header textAlign="left">
-                                <div style={{ fontSize: "15px", wordWrap: "break-word" }}>{this.state.questionInfo.subl}{this.state.questionInfo.section}{this.state.questionInfo.seq}</div>
+                                <div style={{ fontSize: "15px", wordWrap: "break-word" }}>{this.state.questionInfo.subl}{this.state.questionInfo.group}{this.state.questionInfo.seq}</div>
                                 <div style={{ fontSize: "20px", wordWrap: "break-word" }}>{this.state.questionInfo.stem}</div>
                             </Card.Header>
 

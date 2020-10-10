@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Card, Label } from "semantic-ui-react";
+import { Card, Label, Button, Accordion, Icon } from "semantic-ui-react";
 import Box from '@material-ui/core/Box';
-
+import HamNavList from "./Ham-Practice-Nav-List";
 
 let endpoint = "http://192.168.0.82:8080";
 let qpb = require('./ham-questions-pool_pb');
@@ -19,6 +19,8 @@ class HamPractice extends Component {
     constructor(props) {
         super(props);
 
+        this.navRef = React.createRef();
+
         this.state = {
             questionInfo: {
                 stem:"Loading...",
@@ -27,6 +29,7 @@ class HamPractice extends Component {
             },
             cardsColor: ["transparent","transparent","transparent","transparent"],            
             answerSelected: -1,
+            activeIndex: -1
         };
     }
 
@@ -44,6 +47,7 @@ class HamPractice extends Component {
         });
     };
 
+  
     showAnswer = () => {
         let colrs = ["transparent","transparent","transparent","transparent"];
         colrs[this.state.questionInfo.key] = palegreen
@@ -68,25 +72,42 @@ class HamPractice extends Component {
         });
     }
 
-    getQuestion = () => {
-        axios.get(endpoint + "/api/newq", {responseType:'arraybuffer'}).then(res => {
+    getQuestion = (parapPayload) => {
+        console.log(parapPayload)
+        
+        let param = ""
+
+        if (parapPayload != undefined) {
+            // create param for get quesiton request
+            for (let i = 0; i < parapPayload.length; i++) {
+                console.log(parapPayload[i])
+                param = param + "chapter=" + parapPayload[i]
+                if (i +1 < parapPayload.length) {
+                    param += "&"
+                }
+            }
+        }
+
+        console.log(param)
+
+        axios.get(endpoint + "/api/getq?" + param, {responseType:'arraybuffer'}).then(res => {
             if (res.data) {
-                var qqq = qpb.Question.deserializeBinary(res.data)
-                var distractorsl = qqq.getDistractorsList()
+                var question = qpb.Question.deserializeBinary(res.data)
+                var distractorsl = question.getDistractorsList()
 
                 // select random as key
                 let keyloc = Math.floor(Math.random()*4)
-                distractorsl.splice(keyloc,0, qqq.getKey())
+                distractorsl.splice(keyloc,0, question.getKey())
 
                 this.setState({
                     questionInfo: {
-                        subl : qqq.getSublement(),
-                        section : qqq.getSection(),
-                        seq: qqq.getSequence(),
-                        stem: qqq.getStem(),
+                        subl : question.getSubelement(),
+                        group : question.getGroup(),
+                        seq: question.getSequence(),
+                        stem: question.getStem(),
                         choices: distractorsl,
                         key: keyloc,
-                        figure: qqq.getFigure(),
+                        figure: question.getFigure(),
                     },
                     cardsColor: ["transparent","transparent","transparent","transparent"],
                     answerSelected: -1,
@@ -113,7 +134,7 @@ class HamPractice extends Component {
 
     nextQuestion = () => {
         if (frontstack.length <= 0) {
-            this.getQuestion()
+            this.getQuestion(this.navRef.current.getSelectedGroups())
             backstack.push(this.state.questionInfo)
         } else {
             let poped = frontstack.pop()
@@ -132,34 +153,38 @@ class HamPractice extends Component {
         })
     };
 
+    handleAccordionClick = (e, titleProps) => {
+        const {index} = titleProps
+        const {activeIndex} = this.state
+        const newIndex = activeIndex === index ? -1 : index
+        this.setState({activeIndex : newIndex})
+    }
+
     render() {
+        const activeIndex = this.state.activeIndex
+
         return (
             <div className="row">
                 <Card.Group>
                     <Card color="yellow" fluid>
                         <Card.Content>
-
-                            <Box>
-                                G1 – COMMISSION’S RULES
-                                <Label color='blue' tag>
-                                    General class control operator frequency privileges; primary and secondary allocations
-                                </Label>
-                                <Label color='blue' tag>
-                                    Antenna structure limitations; good engineering and good amateur practice; beacon operation; prohibited transmissions; retransmitting radio signals
-                                </Label>
-                                <Label color='blue' tag>
-                                    Transmitter power regulations; data emission standards; 60-meter operation requirements
-                                </Label>
-                                <Label color='blue' tag>
-                                    Volunteer Examiners and Volunteer Examiner Coordinators; temporary identification; element credit
-                                </Label>
-                                <Label color='blue' tag>
-                                    Control categories; repeater regulations; third-party rules; ITU regions; automatically controlled digital station
-                                </Label>
+                            <Box style={{marginBottom: 20}}>
+                                <Accordion styled fluid>
+                                    <Accordion.Title
+                                        active={activeIndex === 0}
+                                        index={0}
+                                        onClick={this.handleAccordionClick}
+                                    >
+                                        <Icon name='dropdown'/>
+                                        Chapter Selection (next question are pulled randomly, might get a repeated one)
+                                    </Accordion.Title>
+                                    <Accordion.Content active={activeIndex === 0}>
+                                        <HamNavList ref={this.navRef}/>
+                                    </Accordion.Content>
+                                </Accordion>
                             </Box>
-
                             <Card.Header textAlign="left">
-                                <div style={{ fontSize: "15px", wordWrap: "break-word" }}>{this.state.questionInfo.subl} {this.state.questionInfo.section} {this.state.questionInfo.seq}</div>
+                                <div style={{ fontSize: "15px", wordWrap: "break-word" }}>{this.state.questionInfo.subl} {this.state.questionInfo.group} {this.state.questionInfo.seq}</div>
                                 <div style={{ fontSize: "20px", wordWrap: "break-word" }}>{this.state.questionInfo.stem}</div>
                             </Card.Header>
                             
@@ -177,14 +202,6 @@ class HamPractice extends Component {
                                     <Card.Header textAlign="left">
                                         <div style={{ wordWrap: "break-word" }}>{this.state.questionInfo.choices[0]}</div>
                                     </Card.Header>
-                                    <Card.Meta textAlign="right">
-                                        {/* <Icon
-                                          name="delete"
-                                          color="red"
-                                          onClick={() => this.deleteTask(item._id)}
-                                        /> */}
-                                        {/* <span style={{ paddingRight: 10 }}>Delete</span> */}
-                                    </Card.Meta>
                                 </Card.Content>
                             </Card>
 
@@ -192,31 +209,15 @@ class HamPractice extends Component {
                                 <Card.Content style={{ background: this.state.cardsColor[1] }}>
                                     <Card.Header textAlign="left">
                                         <div style={{ wordWrap: "break-word" }}>{this.state.questionInfo.choices[1]}</div>
-                                    </Card.Header>
-                                    <Card.Meta textAlign="right">
-                                        {/* <Icon
-                                          name="delete"
-                                          color="red"
-                                          onClick={() => this.deleteTask(item._id)}
-                                        />
-                                        <span style={{ paddingRight: 10 }}>Delete</span> */}
-                                    </Card.Meta>
+                                    </Card.Header>                                       
                                 </Card.Content>
                             </Card>
 
                             <Card fluid onClick={() => this.cardClicked(2)}>
-                            <Card.Content style={{ background: this.state.cardsColor[2] }}>
+                                <Card.Content style={{ background: this.state.cardsColor[2] }}>
                                     <Card.Header textAlign="left">
                                         <div style={{ wordWrap: "break-word" }}>{this.state.questionInfo.choices[2]}</div>
                                     </Card.Header>
-                                    <Card.Meta textAlign="right">
-                                        {/* <Icon
-                                          name="delete"
-                                          color="red"
-                                          onClick={() => this.deleteTask(item._id)}
-                                        /> */}
-                                        {/* <span stylse={{ paddingRight: 10 }}>Delete</span> */}
-                                    </Card.Meta>
                                 </Card.Content>
                             </Card>
 
@@ -226,33 +227,18 @@ class HamPractice extends Component {
                                         <div style={{ wordWrap: "break-word" }}>{this.state.questionInfo.choices[3]}</div>
                                     </Card.Header>
                                     <Card.Meta textAlign="right">
-                                        {/* <Icon
-                                          name="delete"
-                                          color="red"
-                                          onClick={() => this.deleteTask(item._id)}
-                                        /> */}
-                                        {/* <span style={{ paddingRight: 10 }}>Delete</span> */}
                                     </Card.Meta>
                                 </Card.Content>
                             </Card>
 
                             <Card.Meta textAlign="right">
-                            <div className="ui buttons">
-                                <div className="ui blue basic button" onClick={() => this.backQuestion()} >Previous Questions</div>
-                                <div className="ui red basic button" onClick={() => this.showAnswer()}>Don't Know</div>
-                                <div className="ui green basic button" onClick={() => this.checkAnswer()}>Confirm Answer</div>
-                                <div className="ui blue basic button" onClick={() => this.nextQuestion()}>Next Question</div>
-                            </div>
+                            <Box  flex-direction="row-reverse">
+                                <Button color='blue' onClick={() => this.backQuestion()}>Previous Question</Button>
+                                <Button color='red' onClick={() => this.showAnswer()}>Don't Know</Button>
+                                <Button color='green' onClick={() => this.checkAnswer()}>Confirm Answer</Button>
+                                <Button color='blue' onClick={() => this.nextQuestion()}>Next Question</Button>
+                            </Box>
                             </Card.Meta>
-                            
-                            {/* <Card.Meta textAlign="right">     
-                                <Icon
-                                  name="delete"
-                                  color="red"
-                                  // onClick={() => this.deleteTask(item._id)}
-                                />
-                                <span style={{ paddingRight: 10 }}>Delete</span>
-                            </Card.Meta> */}
                         </Card.Content>    
                     </Card>
                 </Card.Group>

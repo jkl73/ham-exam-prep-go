@@ -59,10 +59,9 @@ func GetQuestionV2(w http.ResponseWriter, r *http.Request) {
 		GetQuestion(w, r)
 		return
 	}
-
 	choseChs := chs[rand.Intn(len(chs))]
-	qn := rand.Intn(len(questionPool.SubelementMap[string(choseChs[1])].GetGroupMap()[strings.ToUpper(string(choseChs[2]))].GetQuestions()))
-	question := questionPool.SubelementMap[string(choseChs[1])].GetGroupMap()[strings.ToUpper(string(choseChs[2]))].GetQuestions()[qn]
+	qn := rand.Intn(len(questionPool.SubelementMap[strings.ToUpper(string(choseChs[0:2]))].GetGroupMap()[strings.ToUpper(string(choseChs[2]))].GetQuestions()))
+	question := questionPool.SubelementMap[strings.ToUpper(string(choseChs[0:2]))].GetGroupMap()[strings.ToUpper(string(choseChs[2]))].GetQuestions()[qn]
 	msg, err := pb.Marshal(question)
 	if err != nil {
 		fmt.Println(err)
