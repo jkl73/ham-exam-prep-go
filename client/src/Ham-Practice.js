@@ -72,24 +72,17 @@ class HamPractice extends Component {
         });
     }
 
-    getQuestion = (parapPayload) => {
-        console.log(parapPayload)
-        
+    getQuestion = (parapPayload) => {        
         let param = ""
-
         if (parapPayload != undefined) {
             // create param for get quesiton request
             for (let i = 0; i < parapPayload.length; i++) {
-                console.log(parapPayload[i])
                 param = param + "chapter=" + parapPayload[i]
                 if (i +1 < parapPayload.length) {
                     param += "&"
                 }
             }
         }
-
-        console.log(param)
-
         axios.get(endpoint + "/api/getq?" + param, {responseType:'arraybuffer'}).then(res => {
             if (res.data) {
                 var question = qpb.Question.deserializeBinary(res.data)
