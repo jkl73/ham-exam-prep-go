@@ -67,19 +67,43 @@ class HamExamEmu extends Component {
 
     submitCurrentAnswer = () => {
         let correct = 0
-
+        var statmsgs = new qpb.StatMsgs()
+        
         // set card colors
         for (let i = 0; i < this.state.questionsInfoAndState.length; i++) {
             let cur = this.state.questionsInfoAndState[i].questionInfo
+            var statmsg = new qpb.StatMsg()
+
+            statmsg.setSubelement(cur.subl)
+            statmsg.setGroup(cur.group)
+            statmsg.setSequence(cur.seq)
+
             if (cur.answerSelected >= 0 && cur.answerSelected <= 3) {
-                cur.cardsColor[cur.answerSelected] = reddd
+                if (cur.answerSelected == cur.key) {
+                    statmsg.setVerdict(qpb.StatsVerdict.STAT_CORRECT)
+                    correct++
+                } else {
+                    statmsg.setVerdict(qpb.StatsVerdict.STAT_WRONG)
+                    cur.cardsColor[cur.answerSelected] = reddd
+                }
+            } else {
+                statmsg.setVerdict(qpb.StatsVerdict.STAT_UNKNOWN)
             }
             cur.cardsColor[cur.key] = palegreen
-            if (cur.answerSelected == cur.key) {
-                correct++
-            }
+
+            statmsgs.addMsgs(statmsg)
         }
 
+        // send stat back
+        axios.post(endpoint + "/api/savestatsbatch", statmsgs.serializeBinary(),
+            { 
+                responseType: 'arraybuffer',
+                headers: {'Content-Type': 'application/octet-stream'}
+            }).then(function (response) {
+                console.log(response)
+            }).catch(function (response) {
+                console.log(response)
+            })
         this.setState({
             displaymode: 1,
             correctCount: correct

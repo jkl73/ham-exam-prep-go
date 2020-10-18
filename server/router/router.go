@@ -15,6 +15,9 @@ func Router() *mux.Router {
 
 	router.HandleFunc("/api/gettitles", middleware.GetTitles).Methods("GET", "OPTIONS")
 
+	router.HandleFunc("/api/saveres", middleware.SaveRes).Methods("POST", "OPTIONS")
+	router.HandleFunc("/api/savestatsbatch", middleware.SaveResBatch).Methods("POST", "OPTIONS")
+
 	router.HandleFunc("/image", middleware.ReturnImage).Methods("GET", "OPTIONS")
 	return router
 }

@@ -15,3 +15,7 @@ ham-exam-prep-go
 # Dependency directories (remove the comment below to include it)
 # vendor/
 node_modules/
+
+client/build.tar.gz
+
+SavedStat.stat

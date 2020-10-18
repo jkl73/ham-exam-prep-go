@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"math/rand"
@@ -19,6 +20,8 @@ const questionsTxt = "./server/raw-questions/2019-2023_general.txt"
 const qchapter = "chapter"
 
 var questionPool, questionTitles = initProtos()
+
+var statManager = NewStatManager()
 
 func initProtos() (*proto.CompleteQuestionPool, *proto.AllTitles) {
 	question, titles, err := hamquestions.NewHamQuestionsAndTitles("", questionsTxt)
@@ -99,6 +102,51 @@ func ReturnImage(w http.ResponseWriter, r *http.Request) {
 	} else {
 		fmt.Printf("Sent image %d\n", bytesSent)
 	}
+}
+
+// SaveRes save
+func SaveRes(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+
+	if r.Method == "POST" {
+		buf := new(bytes.Buffer)
+		_, err := buf.ReadFrom(r.Body)
+
+		if err != nil {
+			fmt.Println(err)
+		}
+		res := &proto.StatMsg{}
+		pb.Unmarshal(buf.Bytes(), res)
+		statManager.addStat(res)
+	} else {
+		fmt.Println("receive not post")
+	}
+	statManager.SaveToFile()
+}
+
+// SaveResBatch save batch stat res
+func SaveResBatch(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+
+	if r.Method == "POST" {
+		buf := new(bytes.Buffer)
+		_, err := buf.ReadFrom(r.Body)
+
+		if err != nil {
+			fmt.Println(err)
+		}
+		res := &proto.StatMsgs{}
+		pb.Unmarshal(buf.Bytes(), res)
+		for _, singlestat := range res.GetMsgs() {
+			statManager.addStat(singlestat)
+		}
+
+	} else {
+		fmt.Println("receive not post")
+	}
+	statManager.SaveToFile()
 }
 
 func sendGeneric(w http.ResponseWriter, r *http.Request, payload []byte) {

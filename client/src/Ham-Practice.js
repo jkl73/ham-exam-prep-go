@@ -59,14 +59,34 @@ class HamPractice extends Component {
 
     checkAnswer = () => {
         let colrs = this.state.cardsColor
+        var statmsg = new qpb.StatMsg()
+        statmsg.setSubelement(this.state.questionInfo.subl)
+        statmsg.setGroup(this.state.questionInfo.group)
+        statmsg.setSequence(this.state.questionInfo.seq)
 
         if (this.state.answerSelected == this.state.questionInfo.key) {
             colrs[this.state.questionInfo.key] = palegreen
+            statmsg.setVerdict(qpb.StatsVerdict.STAT_CORRECT)
+        } else if (this.state.answerSelected == -1) {
+            colrs[this.state.questionInfo.key] = palegreen
+            statmsg.setVerdict(qpb.StatsVerdict.STAT_UNKNOWN)
         } else {
             colrs[this.state.answerSelected ] = reddd
             colrs[this.state.questionInfo.key] = palegreen
+            statmsg.setVerdict(qpb.StatsVerdict.STAT_WRONG)
         }
 
+        // send stat back
+        axios.post(endpoint + "/api/saveres", statmsg.serializeBinary(),
+            { 
+                responseType: 'arraybuffer',
+                headers: {'Content-Type': 'application/octet-stream'}
+            }).then(function (response) {
+                console.log(response)
+            }).catch(function (response) {
+                console.log(response)
+            })
+    
         this.setState({
             cardsColor: colrs,
         });
