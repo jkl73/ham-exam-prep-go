@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Card , Icon, Progress } from "semantic-ui-react";
 
-let endpoint = "http://192.168.0.82:8080";
+let endpoint = "http://129.146.173.2:8080";
 let qpb = require('./ham-questions-pool_pb');
 
 class HamStats extends Component {

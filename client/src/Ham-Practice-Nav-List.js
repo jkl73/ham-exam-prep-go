@@ -3,7 +3,7 @@ import axios from "axios";
 import { Card, Label, Checkbox} from "semantic-ui-react";
 import Box from '@material-ui/core/Box';
 
-let endpoint = "http://192.168.0.82:8080";
+let endpoint = "http://129.146.173.2:8080";
 let qpb = require('./ham-questions-pool_pb');
 
 class HamNavList extends Component {

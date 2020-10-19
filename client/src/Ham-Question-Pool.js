@@ -11,7 +11,7 @@ import HamPractice from './Ham-Practice';
 import HamExamEmu from './Ham-Exam-Emu';
 import HamStats from './Ham-Stats';
 
-let endpoint = "http://192.168.0.82:8080";
+let endpoint = "http://129.146.173.2:8080";
 let qpb = require('./ham-questions-pool_pb');
 
 let palegreen = "rgb(190,251,152)";
