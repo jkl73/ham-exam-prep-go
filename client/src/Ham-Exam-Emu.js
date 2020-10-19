@@ -100,9 +100,7 @@ class HamExamEmu extends Component {
                 responseType: 'arraybuffer',
                 headers: {'Content-Type': 'application/octet-stream'}
             }).then(function (response) {
-                console.log(response)
             }).catch(function (response) {
-                console.log(response)
             })
         this.setState({
             displaymode: 1,

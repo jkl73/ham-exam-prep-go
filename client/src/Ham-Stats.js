@@ -29,8 +29,8 @@ class HamStats extends Component {
                     statslist.push(statstuple)
                 })
                 statslist.sort((a,b)=> (b[0] - a[0]))
-                statslist.sort((a,b)=> (a[1].getCorrect()/(a[1].getUnknown() + a[1].getWrong() + a[1].getCorrect()))
-                                        - b[1].getCorrect()/(b[1].getUnknown() + b[1].getWrong() + b[1].getCorrect()))
+                // statslist.sort((a,b)=> (a[1].getCorrect()/(a[1].getUnknown() + a[1].getWrong() + a[1].getCorrect()))
+                //                         - b[1].getCorrect()/(b[1].getUnknown() + b[1].getWrong() + b[1].getCorrect()))
             } 
             // init state
             this.setState({
@@ -45,8 +45,8 @@ class HamStats extends Component {
                 <Card color="yellow" fluid>
                     {this.state.allstats.map((v, index) => 
                         <Card.Content key={index}>
-                           <Progress size='tiny' percent={(v[1].getCorrect()/(v[1].getUnknown() + v[1].getWrong() + v[1].getCorrect())) * 100} success>
-                                {v[0]}
+                           <Progress size='tiny' percent={(v[1].getCorrect()/(v[1].getUnknown() + v[1].getWrong() + v[1].getCorrect())) * 100} Active>
+                                {v[0]} (Correct: {v[1].getCorrect()}, Unknown: {v[1].getUnknown()}, Wrong: {v[1].getWrong()})
                             </Progress>
                         </Card.Content>
                     )}
