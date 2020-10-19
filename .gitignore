@@ -19,3 +19,4 @@ node_modules/
 client/build.tar.gz
 
 SavedStat.stat
+build*tar.gz
