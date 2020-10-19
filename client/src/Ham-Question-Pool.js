@@ -9,8 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import HamPractice from './Ham-Practice';
 import HamExamEmu from './Ham-Exam-Emu';
-
-
+import HamStats from './Ham-Stats';
 
 let endpoint = "http://192.168.0.82:8080";
 let qpb = require('./ham-questions-pool_pb');
@@ -25,7 +24,6 @@ let frontstack = [];
 
 
 class TabPanel extends React.Component {
-    // children, value, index, ...other } = props;
     
     render() {
       return (
@@ -81,16 +79,22 @@ class HamQuestion extends Component {
             </div>
             <AppBar position="static">
                 <Tabs value={this.state.tabValue} onChange={this.handleTabChange} aria-label="simple tabs example">
-                <Tab label="Practice"/>
-                <Tab label="Exam Emulator" />
+                  <Tab label="Practice"/>
+                  <Tab label="Exam Emulator"/>
+                  <Tab label="Stats"/>  
                 </Tabs>
             </AppBar>
-            <TabPanel value={this.state.tabValue} index={0}>
-            <HamPractice></HamPractice>
 
+            <TabPanel value={this.state.tabValue} index={0}>
+              <HamPractice></HamPractice>
             </TabPanel>
+            
             <TabPanel value={this.state.tabValue} index={1}>
-            <HamExamEmu></HamExamEmu>
+              <HamExamEmu></HamExamEmu>
+            </TabPanel>
+
+            <TabPanel value={this.state.tabValue} index={2}>
+              <HamStats></HamStats>
             </TabPanel>
           </div>
         );

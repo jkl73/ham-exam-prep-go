@@ -149,6 +149,16 @@ func SaveResBatch(w http.ResponseWriter, r *http.Request) {
 	statManager.SaveToFile()
 }
 
+// GetStats return the stats manager pb
+func GetStats(w http.ResponseWriter, r *http.Request) {
+	msg, err := pb.Marshal(statManager.statmap)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		sendGeneric(w, r, msg)
+	}
+}
+
 func sendGeneric(w http.ResponseWriter, r *http.Request, payload []byte) {
 	w.Header().Set("Context-Type", "application/octet-stream'") // send
 	w.Header().Set("Access-Control-Allow-Origin", "*")
