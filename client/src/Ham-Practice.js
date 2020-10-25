@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Card, Label, Button, Accordion, Icon } from "semantic-ui-react";
+import { Card, Label, Button, Accordion, Icon, Checkbox} from "semantic-ui-react";
 import Box from '@material-ui/core/Box';
 import HamNavList from "./Ham-Practice-Nav-List";
 
@@ -29,12 +29,15 @@ class HamPractice extends Component {
             },
             cardsColor: ["transparent","transparent","transparent","transparent"],            
             answerSelected: -1,
-            activeIndex: -1
+            activeIndex: -1,
+            prioWrong: false,
         };
     }
 
     componentDidMount() {
-        this.getQuestion()
+        if (this.state.questionInfo.stem == "Loading...") {
+            this.getQuestion()
+        }
     }
 
     cardClicked = (which) => {
@@ -82,9 +85,7 @@ class HamPractice extends Component {
                 responseType: 'arraybuffer',
                 headers: {'Content-Type': 'application/octet-stream'}
             }).then(function (response) {
-                console.log(response)
             }).catch(function (response) {
-                console.log(response)
             })
     
         this.setState({
@@ -94,6 +95,8 @@ class HamPractice extends Component {
 
     getQuestion = (parapPayload) => {        
         let param = ""
+        param += this.state.prioWrong ? "prioWrong=1&" : ""
+
         if (parapPayload != undefined) {
             // create param for get quesiton request
             for (let i = 0; i < parapPayload.length; i++) {
@@ -173,6 +176,10 @@ class HamPractice extends Component {
         this.setState({activeIndex : newIndex})
     }
 
+    handlePrioCheckBox = (e, {checked}) => {
+        this.setState({prioWrong: checked})
+    }
+
     render() {
         const activeIndex = this.state.activeIndex
 
@@ -196,6 +203,11 @@ class HamPractice extends Component {
                                     </Accordion.Content>
                                 </Accordion>
                             </Box>
+
+                            <Box textAlign="right" >
+                                <Checkbox onChange={this.handlePrioCheckBox} label='Prioritize Wrong' />
+                            </Box>
+
                             <Card.Header textAlign="left">
                                 <div style={{ fontSize: "15px", wordWrap: "break-word" }}>{this.state.questionInfo.subl} {this.state.questionInfo.group} {this.state.questionInfo.seq}</div>
                                 <div style={{ fontSize: "20px", wordWrap: "break-word" }}>{this.state.questionInfo.stem}</div>
@@ -245,7 +257,7 @@ class HamPractice extends Component {
                             </Card>
 
                             <Card.Meta textAlign="right">
-                            <Box  flex-direction="row-reverse">
+                            <Box flex-direction="row-reverse">
                                 <Button color='blue' onClick={() => this.backQuestion()}>Previous Question</Button>
                                 <Button color='red' onClick={() => this.showAnswer()}>Don't Know</Button>
                                 <Button color='green' onClick={() => this.checkAnswer()}>Confirm Answer</Button>

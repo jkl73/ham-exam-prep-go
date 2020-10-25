@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Card , Icon } from "semantic-ui-react";
+import { Card , Icon, Checkbox } from "semantic-ui-react";
 import Box from '@material-ui/core/Box';
 
 let endpoint = "http://192.168.0.82:8080";
@@ -26,6 +26,7 @@ class HamExamEmu extends Component {
             currentShowingQuestion: -1,
             displaymode: 0, // 0 answering, 1 submitted
             correctCount: 0,
+            prioWrong: false,
         };
     }
 
@@ -109,7 +110,10 @@ class HamExamEmu extends Component {
     }
 
     getExamQuestions = () => {
-        axios.get(endpoint + "/api/exam", {responseType:'arraybuffer'}).then(res => {
+        let param = ""
+        param += this.state.prioWrong ? "prioWrong=1&" : ""
+
+        axios.get(endpoint + "/api/exam?" + param, {responseType:'arraybuffer'}).then(res => {
             let examliststate = []
             if (res.data) {
                 var examQuestionsList = qpb.QuestionList.deserializeBinary(res.data)
@@ -173,6 +177,10 @@ class HamExamEmu extends Component {
         })
     };
 
+    handlePrioCheckBox = (e, {checked}) => {
+        this.setState({prioWrong: checked})
+    }
+
     render() {
         return (
             <div className="row">
@@ -180,7 +188,7 @@ class HamExamEmu extends Component {
                     <Card color="yellow" fluid>
                         <Card.Content> 
                             <Card.Meta >
-                                <Box display="flex" >
+                                <Box  style={{margin: "0px"}} display="flex" >
                                     <Box display="flex" flexWrap="wrap">
                                         {this.state.questionsInfoAndState.map((value, index) => {
                                             return (
@@ -213,14 +221,13 @@ class HamExamEmu extends Component {
                                             {this.state.currentShowingQuestion + 1}/{this.state.questionsInfoAndState.length}
                                         </Box>
                                         <Box flexDirection="row" className="ui buttons">
-                                            { this.state.displaymode == 0
-                                                // answering mode
-                                                ? <div className="ui orange basic button" onClick={() => this.submitCurrentAnswer()}>Submit</div>
-                                                // submitted mode
-                                                : <div className="ui green basic button" onClick={() => this.newExam()}>New Exam</div>
-                                            }
+                                            <div className="ui orange basic button" onClick={() => this.submitCurrentAnswer()}>Submit</div>
                                         </Box>
                                     </Box>
+                                </Box>
+                                <Box style={{marginTop: "10px"}} textAlign="right" >
+                                    <Checkbox style={{marginRight: "15px"}}  onChange={this.handlePrioCheckBox} label='Prioritize Wrong' />
+                                    <div className="ui green basic button" onClick={() => this.newExam()}>New Exam</div>
                                 </Box>
                             </Card.Meta>
 

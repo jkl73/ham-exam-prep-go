@@ -81,7 +81,7 @@ class HamStats extends Component {
                     <Card.Content >
                         <Button onClick={() => this.sortstatsAccu()}>Sort Accuracy</Button>
                         <Button onClick={() => this.sortstatsName()}>Sort Name</Button>
-                            Total: 454 All Correct: {this.state.oneAccu} All Wrong: {this.state.zeroAccu} Mixed: {this.state.midAccu}
+                            Total: 454 | All Correct: {this.state.oneAccu} | All Wrong: {this.state.zeroAccu} | Mixed: {this.state.midAccu}
                     </Card.Content>
                     
                     {this.state.allstats.map((v, index) => 

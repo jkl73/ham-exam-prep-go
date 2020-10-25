@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"math/rand"
+	"strconv"
 	"strings"
 
 	pb "google.golang.org/protobuf/proto"
@@ -33,19 +34,13 @@ func initProtos() (*proto.CompleteQuestionPool, *proto.AllTitles) {
 
 // GetSimExam returns a complete exam questions set
 func GetSimExam(w http.ResponseWriter, r *http.Request) {
-	exampb := getSimExamQuestions()
-	msg, err := pb.Marshal(exampb)
-	if err != nil {
-		fmt.Println(err)
-	} else {
-		sendGeneric(w, r, msg)
+	prio := 0
+	if len(r.URL.Query()["prioWrong"]) > 0 {
+		prio = 1
 	}
-}
 
-// GetQuestion get one question
-func GetQuestion(w http.ResponseWriter, r *http.Request) {
-	question := getOneRandQuestion()
-	msg, err := pb.Marshal(question)
+	exampb := getSimExamQuestions(prio)
+	msg, err := pb.Marshal(exampb)
 	if err != nil {
 		fmt.Println(err)
 	} else {
@@ -57,20 +52,66 @@ func GetQuestion(w http.ResponseWriter, r *http.Request) {
 func GetQuestionV2(w http.ResponseWriter, r *http.Request) {
 	chs := r.URL.Query()[qchapter]
 
-	// if not specific chatper param, just return a random question
-	if len(chs) == 0 {
-		GetQuestion(w, r)
-		return
+	prio := 0
+	if len(r.URL.Query()["prioWrong"]) > 0 {
+		prio = 1
 	}
-	choseChs := chs[rand.Intn(len(chs))]
-	qn := rand.Intn(len(questionPool.SubelementMap[strings.ToUpper(string(choseChs[0:2]))].GetGroupMap()[strings.ToUpper(string(choseChs[2]))].GetQuestions()))
-	question := questionPool.SubelementMap[strings.ToUpper(string(choseChs[0:2]))].GetGroupMap()[strings.ToUpper(string(choseChs[2]))].GetQuestions()[qn]
+
+	question := &proto.Question{}
+	for i := 0; i < 5; i++ {
+		if len(chs) == 0 {
+			question = getOneRandQuestion()
+		} else {
+			choseChs := chs[rand.Intn(len(chs))]
+			qn := rand.Intn(len(questionPool.SubelementMap[strings.ToUpper(string(choseChs[0:2]))].
+				GetGroupMap()[strings.ToUpper(string(choseChs[2]))].
+				GetQuestions()))
+			question = questionPool.SubelementMap[strings.ToUpper(string(choseChs[0:2]))].
+				GetGroupMap()[strings.ToUpper(string(choseChs[2]))].
+				GetQuestions()[qn]
+		}
+
+		// if no priority enforced, just return this
+		if prio == 0 {
+			break
+		}
+
+		score := calcScore(question.GetSubelement() + question.GetGroup() + strconv.Itoa(int(question.GetSequence())))
+		// if score < 0.5, return this
+		if score < 0.5 {
+			break
+		}
+
+		// if score >= 0.5, select based on prob
+		dice := rand.Float64()
+		if dice > score {
+			break
+		}
+	}
+
 	msg, err := pb.Marshal(question)
 	if err != nil {
 		fmt.Println(err)
 	} else {
 		sendGeneric(w, r, msg)
 	}
+}
+
+// calculate a question score by its appearance
+// if a question never appeared, than score is 0.1
+// the lower the score, the lower the confidence
+
+func calcScore(k string) float64 {
+	correct := statManager.statmap.GetStatsMap()[k].GetCorrect()
+	wrong := statManager.statmap.GetStatsMap()[k].GetWrong()
+	unknown := statManager.statmap.GetStatsMap()[k].GetUnknown()
+	totalApp := unknown + wrong + correct
+
+	if totalApp == 0 {
+		return 0.1
+	}
+
+	return float64(correct) / (float64(totalApp) + 1.0)
 }
 
 // GetTitles will return all subelements and groups title
@@ -172,11 +213,29 @@ func sendGeneric(w http.ResponseWriter, r *http.Request, payload []byte) {
 	}
 }
 
-func getSimExamQuestions() *proto.QuestionList {
+func getSimExamQuestions(prio int) *proto.QuestionList {
 	res := proto.QuestionList{}
-	for _, sub := range questionPool.SubelementMap {
-		for _, qList := range sub.GetGroupMap() {
+	for subID, sub := range questionPool.SubelementMap {
+		for groupID, qList := range sub.GetGroupMap() {
+
 			nq := rand.Intn(len(qList.GetQuestions()))
+			if prio == 1 {
+				for i := 0; i < 5; i++ {
+					nq := rand.Intn(len(qList.GetQuestions()))
+					key := subID + groupID + strconv.Itoa(int(nq))
+
+					score := calcScore(key)
+					// if score < 0.5, return this
+					if score < 0.5 {
+						break
+					}
+					// if score >= 0.5, select based on prob
+					dice := rand.Float64()
+					if dice > score {
+						break
+					}
+				}
+			}
 			res.Questions = append(res.Questions, qList.GetQuestions()[nq])
 		}
 	}
