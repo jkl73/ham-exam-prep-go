@@ -2,8 +2,9 @@ import Box from '@material-ui/core/Box';
 import axios from "axios";
 import React, { Component } from "react";
 import { Card , Icon, Progress, Button } from "semantic-ui-react";
+import { baseURL } from "./api-config"
 
-let endpoint = "http://192.168.0.82:8080";
+let endpoint = baseURL;
 let qpb = require('./ham-questions-pool_pb');
 
 class HamStats extends Component {

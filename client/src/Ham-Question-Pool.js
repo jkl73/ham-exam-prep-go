@@ -10,8 +10,9 @@ import Box from '@material-ui/core/Box';
 import HamPractice from './Ham-Practice';
 import HamExamEmu from './Ham-Exam-Emu';
 import HamStats from './Ham-Stats';
+import { baseURL } from "./api-config"
 
-let endpoint = "http://192.168.0.82:8080";
+let endpoint = baseURL;
 let qpb = require('./ham-questions-pool_pb');
 
 let palegreen = "rgb(190,251,152)";

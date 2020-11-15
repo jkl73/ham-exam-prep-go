@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Card, Label, Checkbox} from "semantic-ui-react";
 import Box from '@material-ui/core/Box';
+import { baseURL } from "./api-config"
 
-let endpoint = "http://192.168.0.82:8080";
+let endpoint = baseURL;
 let qpb = require('./ham-questions-pool_pb');
 
 class HamNavList extends Component {
