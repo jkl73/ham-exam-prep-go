@@ -58,7 +58,16 @@ func GetQuestionV2(w http.ResponseWriter, r *http.Request) {
 	}
 
 	question := &proto.Question{}
-	for i := 0; i < 5; i++ {
+	attempt := 0
+
+	var key string
+	var correct int32
+	var unknown int32
+	var wrong int32
+	var dice float64
+	var calcedScore float64
+
+	for ; attempt < 10; attempt++ {
 		if len(chs) == 0 {
 			question = getOneRandQuestion()
 		} else {
@@ -76,17 +85,36 @@ func GetQuestionV2(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 
-		score := calcScore(question.GetSubelement() + question.GetGroup() + strconv.Itoa(int(question.GetSequence())))
+		key = question.GetSubelement() + question.GetGroup() + strconv.Itoa(int(question.GetSequence()))
+		correct = statManager.statmap.GetStatsMap()[key].GetCorrect()
+		wrong = statManager.statmap.GetStatsMap()[key].GetWrong()
+		unknown = statManager.statmap.GetStatsMap()[key].GetUnknown()
+
+		calcedScore = calcScore(key)
 		// if score < 0.5, return this
-		if score < 0.5 {
+		if calcedScore < 0.5 {
 			break
 		}
 
 		// if score >= 0.5, select based on prob
 		dice := rand.Float64()
-		if dice > score {
+		if dice > calcedScore {
 			break
 		}
+	}
+
+	if prio != 0 {
+		clonedQ := pb.Clone(question).(*proto.Question)
+		clonedQ.Stem = clonedQ.Stem + " [" +
+			strconv.Itoa(attempt) + " " +
+			key + " " +
+			fmt.Sprintf("%.2f", calcedScore) + " " +
+			fmt.Sprintf("%.2f", dice) + " | " +
+			strconv.Itoa(int(correct)) + " " +
+			strconv.Itoa(int(unknown)) + " " +
+			strconv.Itoa(int(wrong)) + "]"
+
+		question = clonedQ
 	}
 
 	msg, err := pb.Marshal(question)

@@ -90,7 +90,7 @@ class HamStats extends Component {
                         <Button onClick={() => this.sortstatsAccu()}>Sort Accuracy</Button>
                         <Button onClick={() => this.sortstatsName()}>Sort Name</Button>
                         <Button onClick={() => this.refreshStats()}>Refresh</Button>
-                            Total: 454 | All Correct: {this.state.oneAccu} | All Wrong: {this.state.zeroAccu} | Mixed: {this.state.midAccu}
+                            Total: {this.state.oneAccu + this.state.zeroAccu + this.state.midAccu}/454 | All Correct: {this.state.oneAccu} | All Wrong: {this.state.zeroAccu} | Mixed: {this.state.midAccu}
                     </Card.Content>
                     
                     {this.state.allstats.map((v, index) => 
