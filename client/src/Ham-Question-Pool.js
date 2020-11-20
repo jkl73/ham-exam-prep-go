@@ -35,11 +35,12 @@ class TabPanel extends React.Component {
             aria-labelledby={`simple-tab-${this.props.index}`}
             {...this.props.other}
         >
-            {this.props.value === this.props.index && (
+            {/* {this.props.value === this.props.index && (
             <Box p={0}>
                 {this.props.children}
             </Box>
-            )}
+            )} */}
+            {this.props.children}
         </div>
       )
     }

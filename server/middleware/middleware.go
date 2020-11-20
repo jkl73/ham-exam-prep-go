@@ -217,26 +217,48 @@ func getSimExamQuestions(prio int) *proto.QuestionList {
 	res := proto.QuestionList{}
 	for subID, sub := range questionPool.SubelementMap {
 		for groupID, qList := range sub.GetGroupMap() {
-
 			nq := rand.Intn(len(qList.GetQuestions()))
 			if prio == 1 {
-				for i := 0; i < 5; i++ {
-					nq := rand.Intn(len(qList.GetQuestions()))
-					key := subID + groupID + strconv.Itoa(int(nq))
 
-					score := calcScore(key)
-					// if score < 0.5, return this
-					if score < 0.5 {
+				calcedScore := 0.0
+				attempt := 0
+				dice := 0.0
+				var key string
+
+				for ; attempt < 10; attempt++ {
+					nq = rand.Intn(len(qList.GetQuestions()))
+					key = subID + groupID + strconv.Itoa(int(nq)+1) // 1 based
+
+					calcedScore = calcScore(key)
+					// if calcedScore < 0.5, return this
+					if calcedScore < 0.5 {
 						break
 					}
 					// if score >= 0.5, select based on prob
-					dice := rand.Float64()
-					if dice > score {
+					dice = rand.Float64()
+					if dice > calcedScore {
 						break
 					}
 				}
+
+				correct := statManager.statmap.GetStatsMap()[key].GetCorrect()
+				wrong := statManager.statmap.GetStatsMap()[key].GetWrong()
+				unknown := statManager.statmap.GetStatsMap()[key].GetUnknown()
+				// totalApp := unknown + wrong + correct
+
+				clonedQ := pb.Clone(qList.GetQuestions()[nq]).(*proto.Question)
+				clonedQ.Stem = clonedQ.Stem + " [" +
+					strconv.Itoa(attempt) + " " +
+					key + " " +
+					fmt.Sprintf("%.2f", calcedScore) + " " +
+					fmt.Sprintf("%.2f", dice) + " | " +
+					strconv.Itoa(int(correct)) + " " +
+					strconv.Itoa(int(unknown)) + " " +
+					strconv.Itoa(int(wrong)) + "]"
+				res.Questions = append(res.Questions, clonedQ)
+			} else {
+				res.Questions = append(res.Questions, qList.GetQuestions()[nq])
 			}
-			res.Questions = append(res.Questions, qList.GetQuestions()[nq])
 		}
 	}
 	return &res

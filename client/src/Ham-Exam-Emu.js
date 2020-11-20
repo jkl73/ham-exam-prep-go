@@ -32,7 +32,9 @@ class HamExamEmu extends Component {
     }
 
     componentDidMount() {
-        this.getExamQuestions()
+        if (this.state.questionsInfoAndState.length == 0) {
+            this.getExamQuestions()
+        }
     }
 
     cardClicked = (which) => {
@@ -240,7 +242,7 @@ class HamExamEmu extends Component {
                             {this.state.questionInfo.figure == "2019-2023_general-G7-1.png" &&
                             <Box>    
                                 <img style={{ maxWidth: "100%" }}
-                                src="http://129.146.173.2:8080/image"
+                                src={endpoint+"/image"}
                                 alt="Schematic diagram for this question"
                                 />
                             </Box>
