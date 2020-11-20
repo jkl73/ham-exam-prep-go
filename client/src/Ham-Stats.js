@@ -20,7 +20,10 @@ class HamStats extends Component {
     }
 
     componentDidMount() {
+        this.populateStats()
+    }
 
+    populateStats = () => {
         axios.get(endpoint + "/api/getstats", {responseType:'arraybuffer'}).then(res => {
             let allRight = 0
             let allWrong = 0
@@ -75,6 +78,10 @@ class HamStats extends Component {
         })
     }
 
+    refreshStats = () => {
+        this.populateStats()
+    }
+
     render() {
         return (
             <Card.Group>
@@ -82,6 +89,7 @@ class HamStats extends Component {
                     <Card.Content >
                         <Button onClick={() => this.sortstatsAccu()}>Sort Accuracy</Button>
                         <Button onClick={() => this.sortstatsName()}>Sort Name</Button>
+                        <Button onClick={() => this.refreshStats()}>Refresh</Button>
                             Total: 454 | All Correct: {this.state.oneAccu} | All Wrong: {this.state.zeroAccu} | Mixed: {this.state.midAccu}
                     </Card.Content>
                     
