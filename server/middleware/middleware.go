@@ -97,7 +97,7 @@ func GetQuestionV2(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// if score >= 0.5, select based on prob
-		dice := rand.Float64()
+		dice = rand.Float64()
 		if dice > calcedScore {
 			break
 		}
@@ -139,7 +139,7 @@ func calcScore(k string) float64 {
 		return 0.1
 	}
 
-	return float64(correct) / (float64(totalApp) + 1.0)
+	return float64(correct) / (float64(totalApp) + 0.65)
 }
 
 // GetTitles will return all subelements and groups title
