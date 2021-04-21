@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/lulumel0n/ham-exam-prep-go/server/router"
+	"github.com/jkl73/ham-exam-prep-go/server/router"
 )
 
 func main() {

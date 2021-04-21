@@ -2,7 +2,7 @@ package router
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/lulumel0n/ham-exam-prep-go/server/middleware"
+	"github.com/jkl73/ham-exam-prep-go/server/middleware"
 )
 
 // Router for routing

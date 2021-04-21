@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/lulumel0n/arrl-ham-questions-pool-proto/proto"
+	"github.com/jkl73/arrl-ham-questions-pool-proto/proto"
 	pb "google.golang.org/protobuf/proto"
 )
 

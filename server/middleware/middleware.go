@@ -12,8 +12,8 @@ import (
 
 	"net/http"
 
-	hamquestions "github.com/lulumel0n/arrl-ham-questions-pool-proto/ham-questions"
-	"github.com/lulumel0n/arrl-ham-questions-pool-proto/proto"
+	hamquestions "github.com/jkl73/arrl-ham-questions-pool-proto/ham-questions"
+	"github.com/jkl73/arrl-ham-questions-pool-proto/proto"
 )
 
 const questionsTxt = "./server/raw-questions/2019-2023_general.txt"
@@ -25,7 +25,7 @@ var questionPool, questionTitles = initProtos()
 var statManager = NewStatManager()
 
 func initProtos() (*proto.CompleteQuestionPool, *proto.AllTitles) {
-	question, titles, err := hamquestions.NewHamQuestionsAndTitles("", questionsTxt)
+	question, titles, err := hamquestions.NewHamQuestionsAndTitles("", questionsTxt, hamquestions.Tech)
 	if err != nil {
 		panic("Cannot init question pool")
 	}
