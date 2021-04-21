@@ -1409,6 +1409,7 @@ A. Input impedance
 B. Output impedance
 C. Reflection coefficient
 D. All these choices are correct
+~~
 E4C - Receiver performance characteristics: phase noise, noise floor, image rejection, MDS, signal-to-noise ratio, noise figure, reciprocal mixing; selectivity; effects of SDR receiver non-linearity; use of attenuators at low frequencies
 E4C01 (D)
 What is an effect of excessive phase noise in a receiver's local oscillator?

@@ -16,7 +16,9 @@ import (
 	"github.com/jkl73/arrl-ham-questions-pool-proto/proto"
 )
 
-const questionsTxt = "./server/raw-questions/2019-2023_general.txt"
+const techFile = "./server/raw-questions/2018-2022_technician.txt"
+const generalFile = "./server/raw-questions/2019-2023_general.txt"
+const extraFile = "./server/raw-questions/2020-2024_extra.txt"
 
 const qchapter = "chapter"
 
@@ -25,7 +27,7 @@ var questionPool, questionTitles = initProtos()
 var statManager = NewStatManager()
 
 func initProtos() (*proto.CompleteQuestionPool, *proto.AllTitles) {
-	question, titles, err := hamquestions.NewHamQuestionsAndTitles("", questionsTxt, hamquestions.Tech)
+	question, titles, err := hamquestions.NewHamQuestionsAndTitles("", techFile, hamquestions.Tech)
 	if err != nil {
 		panic("Cannot init question pool")
 	}
