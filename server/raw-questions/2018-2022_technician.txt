@@ -1,4 +1,4 @@
-SUBELEMENT T1 – FCC Rules, descriptions, and definitions for the Amateur Radio Service, operator and station license responsibilities - [6 Exam Questions - 6 Groups]
+SUBELEMENT T1 - FCC Rules, descriptions, and definitions for the Amateur Radio Service, operator and station license responsibilities - [6 Exam Questions - 6 Groups]
 T1A - Amateur Radio Service: purpose and permissible use of the Amateur Radio Service, operator/primary station license grant; Meanings of basic terms used in FCC rules; Interference; RACES rules; Phonetics; Frequency Coordinator
 T1A01 (C) [97.1]
 Which of the following is a purpose of the Amateur Radio Service as stated in the FCC rules and regulations?
@@ -560,7 +560,7 @@ B. Ask if the frequency is in use
 C. Make sure you are in your assigned band
 D. All of these choices are correct
 ~~
-T2B – VHF/UHF operating practices: SSB phone; FM repeater; simplex; splits and shifts; CTCSS; DTMF; tone squelch; carrier squelch; phonetics; operational problem resolution; Q signals
+T2B - VHF/UHF operating practices: SSB phone; FM repeater; simplex; splits and shifts; CTCSS; DTMF; tone squelch; carrier squelch; phonetics; operational problem resolution; Q signals
 T2B01 (C)
 What is the most common use of the “reverse split” function of a VHF/UHF transceiver?
 A. Reduce power output
@@ -659,7 +659,7 @@ B. A repeater with more than one receiver
 C. Multiple repeaters with the same owner
 D. A system of repeaters linked by APRS
 ~~
-T2C – Public service: emergency and non-emergency operations; applicability of FCC rules; RACES and ARES; net and traffic procedures; operating restrictions during emergencies
+T2C - Public service: emergency and non-emergency operations; applicability of FCC rules; RACES and ARES; net and traffic procedures; operating restrictions during emergencies
 T2C01 (D) [97.103(a)]
 When do the FCC rules NOT apply to the operation of an amateur station?
 A. When operating a RACES station
@@ -744,7 +744,7 @@ B. Licensed amateurs who are members of the military and who voluntarily agreed 
 C. A training program that provides licensing courses for those interested in obtaining an amateur license to use during emergencies
 D. A training program that certifies amateur operators for membership in the Radio Amateur Civil Emergency Service
 ~~
-SUBELEMENT T3 – Radio wave characteristics: properties of radio waves; propagation modes – [3 Exam Questions - 3 Groups]
+SUBELEMENT T3 - Radio wave characteristics: properties of radio waves; propagation modes - [3 Exam Questions - 3 Groups]
 T3A - Radio wave characteristics: how a radio signal travels; fading; multipath; polarization; wavelength vs absorption; antenna orientation
 T3A01 (D)
 What should you do if another operator reports that your station’s 2 meter signals were strong just a moment ago, but now they are weak or distorted?
@@ -995,8 +995,8 @@ B. Radio waves are not blocked by dust particles
 C. The Earth seems less curved to radio waves than to light
 D. Radio waves are blocked by dust particles
 ~~
-SUBELEMENT T4 - Amateur radio practices and station set-up – [2 Exam Questions - 2 Groups]
-T4A – Station setup: connecting microphones; reducing unwanted emissions; power source; connecting a computer; RF grounding; connecting digital equipment; connecting an SWR meter
+SUBELEMENT T4 - Amateur radio practices and station set-up - [2 Exam Questions - 2 Groups]
+T4A - Station setup: connecting microphones; reducing unwanted emissions; power source; connecting a computer; RF grounding; connecting digital equipment; connecting an SWR meter
 T4A01 (D)
 What must be considered to determine the minimum current capacity needed for a transceiver power supply?
 A. Efficiency of the transmitter at full power output
@@ -1166,7 +1166,7 @@ B. To prevent interference to nearby repeaters
 C. To scan through a range of frequencies to check for activity
 D. To check for messages left on a digital bulletin board
 ~~
-SUBELEMENT T5 – Electrical principles: math for electronics; electronic principles; Ohm’s Law – [4 Exam Questions - 4 Groups]
+SUBELEMENT T5 - Electrical principles: math for electronics; electronic principles; Ohm’s Law - [4 Exam Questions - 4 Groups]
 T5A - Electrical principles, units, and terms: current and voltage; conductors and insulators; alternating and direct current; series and parallel circuits
 T5A01 (D)
 Electrical current is measured in which of the following units?
@@ -1195,7 +1195,7 @@ A. Alternating current
 B. Direct current
 C. Normal current
 D. Smooth current
-~
+~~
 T5A05 (A)
 What is the electrical term for the electromotive force (EMF) that causes electron flow?
 A. Voltage
@@ -1264,7 +1264,8 @@ In which type of circuit is voltage the same across all components?
 A. Series
 B. Parallel
 C. Resonant
-D. Branch~~
+D. Branch
+~~
 T5B - Math for electronics: conversion of electrical units; decibels; the metric system
 T5B01 (C)
 How many milliamperes is 1.5 amperes?
@@ -1367,7 +1368,8 @@ C. Tolerance
 D. Capacitance
 ~~
 T5C02 (A)
-What is the basic unit of capacitance?A. The farad
+What is the basic unit of capacitance?
+A. The farad
 B. The ohm
 C. The volt
 D. The henry
@@ -1456,7 +1458,7 @@ B. mhZ
 C. Mhz
 D. MHz
 ~~
-T5D – Ohm’s Law: formulas and usage; components in series and parallel
+T5D - Ohm’s Law: formulas and usage; components in series and parallel
 T5D01 (B)
 What formula is used to calculate current in a circuit?
 A. Current (I) equals voltage (E) multiplied by resistance (R)
@@ -1569,7 +1571,7 @@ B. Half the source voltage
 C. Twice the source voltage
 D. The same voltage as the source
 ~~
-SUBELEMENT T6 – Electrical components; circuit diagrams; component functions – [4 Exam Questions - 4 Groups]
+SUBELEMENT T6 - Electrical components; circuit diagrams; component functions - [4 Exam Questions - 4 Groups]
 T6A - Electrical components: fixed and variable resistors; capacitors and inductors; fuses; switches; batteries
 T6A01 (B)
 What electrical component opposes the flow of current in a DC circuit?
@@ -1579,7 +1581,8 @@ C. Voltmeter
 D. Transformer
 ~~
 T6A02 (C)
-What type of component is often used as an adjustable volume control?A. Fixed resistor
+What type of component is often used as an adjustable volume control?
+A. Fixed resistor
 B. Power resistor
 C. Potentiometer
 D. Transformer
@@ -1647,7 +1650,7 @@ B. Carbon-zinc
 C. Lead-acid
 D. Lithium-ion
 ~~
-T6B – Semiconductors: basic principles and applications of solid state devices; diodes and transistors
+T6B - Semiconductors: basic principles and applications of solid state devices; diodes and transistors
 T6B01 (D)
 What class of electronic components uses a voltage or current signal to control current flow?
 A. Capacitors
@@ -1902,8 +1905,8 @@ B. To increase the current carrying capability of the wire
 C. To prevent coupling of unwanted signals to or from the wire
 D. To couple the wire to other signals
 ~~
-SUBELEMENT T7 – Station equipment: common transmitter and receiver problems; antenna measurements; troubleshooting; basic repair and testing – [4 Exam Questions - 4 Groups]
-T7A – Station equipment: receivers; transmitters; transceivers; modulation; transverters; transmit and receive amplifiers
+SUBELEMENT T7 - Station equipment: common transmitter and receiver problems; antenna measurements; troubleshooting; basic repair and testing - [4 Exam Questions - 4 Groups]
+T7A - Station equipment: receivers; transmitters; transceivers; modulation; transverters; transmit and receive amplifiers
 T7A01 (B)
 Which term describes the ability of a receiver to detect the presence of a signal?
 A. Linearity
@@ -1947,7 +1950,8 @@ C. Transverter
 D. Phase converter
 ~~
 T7A07 (D)
-What is meant by “PTT”?A. Pre-transmission tuning to reduce transmitter harmonic emission
+What is meant by “PTT”?
+A. Pre-transmission tuning to reduce transmitter harmonic emission
 B. Precise tone transmissions used to limit repeater access to only certain signals
 C. A primary transformer tuner use to match antennas
 D. The push-to-talk function that switches between receive and transmit
@@ -1980,7 +1984,7 @@ B. At the output of the transmitter's power amplifier
 C. Between a transmitter and antenna tuner
 D. At the receiver's audio output
 ~~
-T7B – Common transmitter and receiver problems: symptoms of overload and overdrive; distortion; causes of interference; interference and consumer electronics; part 15 devices; over-modulation; RF feedback; off frequency signals
+T7B - Common transmitter and receiver problems: symptoms of overload and overdrive; distortion; causes of interference; interference and consumer electronics; part 15 devices; over-modulation; RF feedback; off frequency signals
 T7B01 (D)
 What can you do if you are told your FM handheld or mobile transceiver is over-deviating?
 A. Talk louder into the microphone
@@ -2066,7 +2070,7 @@ B. Add a high-pass filter to the TV antenna input
 C. Add a preamplifier to the TV antenna input
 D. Be sure all TV coaxial connectors are installed properly
 ~~
-T7C – Antenna measurements and troubleshooting: measuring SWR; dummy loads; coaxial cables; causes of feed line failures
+T7C - Antenna measurements and troubleshooting: measuring SWR; dummy loads; coaxial cables; causes of feed line failures
 T7C01 (A)
 What is the primary purpose of a dummy load?
 A. To prevent transmitting signals over the air when making tests
@@ -2151,7 +2155,7 @@ B. A non-inductive resistor and a heat sink
 C. A low-voltage power supply and a DC relay
 D. A 50 ohm reactance used to terminate a transmission line
 ~~
-T7D – Basic repair and testing: soldering; using basic test instruments; connecting a voltmeter, ammeter, or ohmmeter
+T7D - Basic repair and testing: soldering; using basic test instruments; connecting a voltmeter, ammeter, or ohmmeter
 T7D01 (B)
 Which instrument would you use to measure electric potential or electromotive force?
 A. An ammeter
@@ -2210,7 +2214,8 @@ D. Aluminum solder
 ~~
 T7D09 (C)
 What is the characteristic appearance of a cold solder joint?
-A. Dark black spotsB. A bright or shiny surface
+A. Dark black spots
+B. A bright or shiny surface
 C. A grainy or dull surface
 D. A greenish tint
 ~~
@@ -2235,8 +2240,8 @@ B. Ensure that the voltmeter and leads are rated for use at the voltages to be m
 C. Ensure that the circuit is grounded through the voltmeter
 D. Ensure that the voltmeter is set to the correct frequency
 ~~
-SUBELEMENT T8 – Modulation modes: amateur satellite operation; operating activities; non-voice and digital communications – [4 Exam Questions - 4 Groups]
-T8A – Modulation modes: bandwidth of various signals; choice of emission type
+SUBELEMENT T8 - Modulation modes: amateur satellite operation; operating activities; non-voice and digital communications - [4 Exam Questions - 4 Groups]
+T8A - Modulation modes: bandwidth of various signals; choice of emission type
 T8A01 (C)
 Which of the following is a form of amplitude modulation?
 A. Spread spectrum
@@ -2259,7 +2264,8 @@ C. SSB
 D. PM
 ~~
 T8A04 (D)
-Which type of modulation is most commonly used for VHF and UHF voice repeaters?A. AM
+Which type of modulation is most commonly used for VHF and UHF voice repeaters?
+A. AM
 B. SSB
 C. PSK
 D. FM
@@ -2398,8 +2404,8 @@ A. Check your signal strength report in the telemetry data
 B. Listen for distortion on your downlink signal
 C. Your signal strength on the downlink should be about the same as the beacon
 D. All of these choices are correct
-~
-T8C – Operating activities: radio direction finding; radio control; contests; linking over the internet; grid locators
+~~
+T8C - Operating activities: radio direction finding; radio control; contests; linking over the internet; grid locators
 T8C01 (C)
 Which of the following methods is used to locate sources of noise interference or jamming?
 A. Echolocation
@@ -2416,7 +2422,8 @@ D. All of these choices are correct
 ~~
 T8C03 (A)
 What operating activity involves contacting as many stations as possible during a specified period?
-A. ContestingB. Net operations
+A. Contesting
+B. Net operations
 C. Public service events
 D. Simulated emergency exercises
 ~~
@@ -2476,7 +2483,7 @@ B. A repeater
 C. A digipeater
 D. A beacon
 ~~
-T8D – Non-voice and digital communications: image signals; digital modes; CW; packet radio; PSK31; APRS; error detection and correction; NTSC; amateur radio networking; Digital Mobile/Migration Radio
+T8D - Non-voice and digital communications: image signals; digital modes; CW; packet radio; PSK31; APRS; error detection and correction; NTSC; amateur radio networking; Digital Mobile/Migration Radio
 T8D01 (D)
 Which of the following is a digital communications mode?
 A. Packet radio
@@ -2575,8 +2582,8 @@ B. A device for voice activated switching from receive to transmit
 C. A device that assists in manual sending of Morse code
 D. An interlock to prevent unauthorized use of a radio
 ~~
-SUBELEMENT T9 – Antennas and feed lines - [2 Exam Questions - 2 Groups]
-T9A – Antennas: vertical and horizontal polarization; concept of gain; common portable and mobile antennas; relationships between resonant length and frequency; concept of dipole antennas
+SUBELEMENT T9 - Antennas and feed lines - [2 Exam Questions - 2 Groups]
+T9A - Antennas: vertical and horizontal polarization; concept of gain; common portable and mobile antennas; relationships between resonant length and frequency; concept of dipole antennas
 T9A01 (C)
 What is a beam antenna?
 A. An antenna built from aluminum I-beams
@@ -2662,7 +2669,7 @@ B. It has very high angle radiation for better communicating through a repeater
 C. It eliminates distortion caused by reflected signals
 D. It has 10 times the power gain of a 1/4 wavelength design
 ~~
-T9B – Feed lines: types, attenuation vs frequency, selecting; SWR concepts; Antenna tuners (couplers); RF Connectors: selecting, weather protection
+T9B - Feed lines: types, attenuation vs frequency, selecting; SWR concepts; Antenna tuners (couplers); RF Connectors: selecting, weather protection
 T9B01 (B)
 Why is it important to have low SWR when using coaxial cable feed line?
 A. To reduce television interference
@@ -2740,8 +2747,8 @@ B. Multi-conductor unbalanced cable
 C. Air-insulated hard line
 D. 75-ohm flexible coax
 ~~
-SUBELEMENT T0 – Electrical safety: AC and DC power circuits; antenna installation; RF hazards – [3 Exam Questions - 3 Groups]
-T0A – Power circuits and hazards: hazardous voltages; fuses and circuit breakers; grounding; lightning protection; battery safety; electrical code compliance
+SUBELEMENT T0 - Electrical safety: AC and DC power circuits; antenna installation; RF hazards - [3 Exam Questions - 3 Groups]
+T0A - Power circuits and hazards: hazardous voltages; fuses and circuit breakers; grounding; lightning protection; battery safety; electrical code compliance
 T0A01 (B)
 Which of the following is a safety hazard of a 12-volt storage battery?
 A. Touching both terminals with the hands can cause electrical shock
@@ -2819,7 +2826,7 @@ B. Circulating currents inside the transformer might cause damage
 C. The fuse might blow if you remove the cover
 D. You might receive an electric shock from the charge stored in large capacitors
 ~~
-T0B – Antenna safety: tower safety and grounding; erecting an antenna support; safely installing an antenna
+T0B - Antenna safety: tower safety and grounding; erecting an antenna support; safely installing an antenna
 T0B01 (C)
 When should members of a tower work team wear a hard hat and safety glasses?
 A. At all times except when climbing the tower
@@ -3002,4 +3009,4 @@ A. 3 times as much
 B. 1/2 as much
 C. 2 times as much
 D. There is no adjustment allowed for shorter exposure times
-~~~end of question pool text~~~
+~~
