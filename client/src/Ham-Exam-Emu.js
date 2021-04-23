@@ -239,11 +239,11 @@ class HamExamEmu extends Component {
                                 <div style={{ fontSize: "20px", wordWrap: "break-word" }}>{this.state.questionInfo.stem}</div>
                             </Card.Header>
 
-                            {this.state.questionInfo.figure == "2019-2023_general-G7-1.png" &&
+                            {this.state.questionInfo.figure != "" &&
                             <Box>    
                                 <img style={{ maxWidth: "100%" }}
-                                src={endpoint+"/image"}
-                                alt="Schematic diagram for this question"
+                                src={endpoint+"/image/"+this.state.questionInfo.figure}
+                                alt="schematic diagram for this question"
                                 />
                             </Box>
                             }

@@ -12,6 +12,7 @@ import (
 
 	"net/http"
 
+	"github.com/gorilla/mux"
 	hamquestions "github.com/jkl73/arrl-ham-questions-pool-proto/ham-questions"
 	"github.com/jkl73/arrl-ham-questions-pool-proto/proto"
 )
@@ -156,14 +157,26 @@ func GetTitles(w http.ResponseWriter, r *http.Request) {
 
 // ReturnImage return an image
 func ReturnImage(w http.ResponseWriter, r *http.Request) {
-	data, err := ioutil.ReadFile("./image/2019-2023_general-G7-1.jpeg")
+	vars := mux.Vars(r)
+
+	fn := vars["filename"]
+	// clean filename
+
+	fn = strings.Replace(fn, "/", "", -1)
+	fn = strings.Replace(fn, ".", "", -1)
+	fn = strings.Replace(fn, "\\", "", -1)
+	fn = strings.Replace(fn, " ", "", -1)
+
+	fmt.Println(fn)
+
+	data, err := ioutil.ReadFile("./image/" + fn + ".png")
 
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
 
-	w.Header().Set("Context-Type", "image/jpeg") // send
+	w.Header().Set("Context-Type", "image/png") // send
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	bytesSent, err := w.Write(data)
