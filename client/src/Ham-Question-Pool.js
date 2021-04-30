@@ -19,10 +19,13 @@ let palegreen = "rgb(190,251,152)";
 let bluuu = "rgba(135,200,230,12)";
 let reddd = "rgb(240,128,128)";
 
+let lv;
+let leveltitle;
+let appbarcolor;
+
 // back button
 let backstack = [];
 let frontstack = [];
-
 
 class TabPanel extends React.Component {
     
@@ -57,6 +60,19 @@ class HamQuestion extends Component {
     constructor(props) {
         super(props);
 
+        lv = props.level
+
+        if (lv == "tech") {
+          leveltitle = "Technician"
+          appbarcolor = "green"
+        } else if (lv == "general") {
+          leveltitle = "General"
+          appbarcolor = "blue"
+        } else if (lv == "extra") {
+          leveltitle = "Amateur Extra"
+          appbarcolor = "red"
+        }
+
         this.state = {
             tabValue: 0,
         };
@@ -72,14 +88,18 @@ class HamQuestion extends Component {
     };
 
     render() {
+        const appbarstype = {
+          background: appbarcolor
+        }
+
         return (
           <div>
             <div className="row">
               <Header style={{ margin: "25px 10px" }} className="header" as="h1">
-                HAM General Exam Practice 📻
+                HAM {leveltitle} Exam Practice 📻
               </Header>
             </div>
-            <AppBar position="static">
+            <AppBar position="static" style={appbarstype}>
                 <Tabs value={this.state.tabValue} onChange={this.handleTabChange} aria-label="simple tabs example">
                   <Tab label="Practice"/>
                   <Tab label="Exam Emulator"/>

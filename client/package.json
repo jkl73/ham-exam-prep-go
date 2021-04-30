@@ -12,6 +12,7 @@
     "protobufjs": "^6.10.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-tabs": "^3.1.1",
     "semantic-ui-react": "^1.2.1"
