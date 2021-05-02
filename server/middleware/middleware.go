@@ -23,14 +23,29 @@ const extraFile = "./server/raw-questions/2020-2024_extra.txt"
 
 const qchapter = "chapter"
 
-var questionPool, questionTitles = initProtos()
+var techQuestionsPool, techQuestionTitles = initProtos(hamquestions.Tech)
+var generalQuestionPool, generalQuestionTitles = initProtos(hamquestions.General)
+var extraQuestionPool, extraQuestionTitles = initProtos(hamquestions.Extra)
 
 var statManager = NewStatManager()
 
-func initProtos() (*proto.CompleteQuestionPool, *proto.AllTitles) {
-	question, titles, err := hamquestions.NewHamQuestionsAndTitles("", techFile, hamquestions.Tech)
+func initProtos(level hamquestions.Level) (*proto.CompleteQuestionPool, *proto.AllTitles) {
+
+	var fname string
+	if level == hamquestions.Extra {
+		fname = extraFile
+	} else if level == hamquestions.General {
+		fname = generalFile
+	} else if level == hamquestions.Tech {
+		fname = techFile
+	} else {
+		panic("wtf")
+	}
+
+	question, titles, err := hamquestions.NewHamQuestionsAndTitles("", fname, level)
 	if err != nil {
-		panic("Cannot init question pool")
+		fmt.Printf("cannot init questions proto %s", fname)
+		panic(err)
 	}
 	return question, titles
 }
@@ -42,7 +57,10 @@ func GetSimExam(w http.ResponseWriter, r *http.Request) {
 		prio = 1
 	}
 
-	exampb := getSimExamQuestions(prio)
+	level := r.URL.Query()["level"]
+	lv := mapToLevelEnum(level[0])
+
+	exampb := getSimExamQuestions(prio, lv)
 	msg, err := pb.Marshal(exampb)
 	if err != nil {
 		fmt.Println(err)
@@ -54,6 +72,9 @@ func GetSimExam(w http.ResponseWriter, r *http.Request) {
 // GetQuestionV2 can accept params (charpter) to return a specific domain
 func GetQuestionV2(w http.ResponseWriter, r *http.Request) {
 	chs := r.URL.Query()[qchapter]
+
+	level := r.URL.Query()["level"]
+	lv := mapToLevelEnum(level[0])
 
 	prio := 0
 	if len(r.URL.Query()["prioWrong"]) > 0 {
@@ -72,15 +93,16 @@ func GetQuestionV2(w http.ResponseWriter, r *http.Request) {
 
 	for ; attempt < 10; attempt++ {
 		if len(chs) == 0 {
-			question = getOneRandQuestion()
+			question = getOneRandQuestion(lv)
 		} else {
-			choseChs := chs[rand.Intn(len(chs))]
-			qn := rand.Intn(len(questionPool.SubelementMap[strings.ToUpper(string(choseChs[0:2]))].
-				GetGroupMap()[strings.ToUpper(string(choseChs[2]))].
-				GetQuestions()))
-			question = questionPool.SubelementMap[strings.ToUpper(string(choseChs[0:2]))].
-				GetGroupMap()[strings.ToUpper(string(choseChs[2]))].
-				GetQuestions()[qn]
+			chosenChapter := chs[rand.Intn(len(chs))]
+			// qn := rand.Intn(len(questionPool.SubelementMap[strings.ToUpper(string(choseChs[0:2]))].
+			// 	GetGroupMap()[strings.ToUpper(string(choseChs[2]))].
+			// 	GetQuestions()))
+			// question = questionPool.SubelementMap[strings.ToUpper(string(choseChs[0:2]))].
+			// 	GetGroupMap()[strings.ToUpper(string(choseChs[2]))].
+			// 	GetQuestions()[qn]
+			question = getQuestionInChapter(lv, chosenChapter)
 		}
 
 		// if no priority enforced, just return this
@@ -147,7 +169,10 @@ func calcScore(k string) float64 {
 
 // GetTitles will return all subelements and groups title
 func GetTitles(w http.ResponseWriter, r *http.Request) {
-	msg, err := pb.Marshal(questionTitles)
+	level := r.URL.Query()["level"]
+	lv := mapToLevelEnum(level[0])
+
+	msg, err := pb.Marshal(mapToLevelTitle(lv))
 	if err != nil {
 		fmt.Println(err)
 	} else {
@@ -256,9 +281,11 @@ func sendGeneric(w http.ResponseWriter, r *http.Request, payload []byte) {
 	}
 }
 
-func getSimExamQuestions(prio int) *proto.QuestionList {
+func getSimExamQuestions(prio int, lv hamquestions.Level) *proto.QuestionList {
+	selectedpool := mapToLevelQuestionPool(lv)
+
 	res := proto.QuestionList{}
-	for subID, sub := range questionPool.SubelementMap {
+	for subID, sub := range selectedpool.SubelementMap {
 		for groupID, qList := range sub.GetGroupMap() {
 			nq := rand.Intn(len(qList.GetQuestions()))
 			if prio == 1 {
@@ -307,13 +334,62 @@ func getSimExamQuestions(prio int) *proto.QuestionList {
 	return &res
 }
 
-func getOneRandQuestion() *proto.Question {
+func getOneRandQuestion(lv hamquestions.Level) *proto.Question {
+	selectedpool := mapToLevelQuestionPool(lv)
+
 	// get the first one (random)
-	for _, subelement := range questionPool.SubelementMap {
+	for _, subelement := range selectedpool.SubelementMap {
 		for _, group := range subelement.GroupMap {
 			nq := rand.Intn(len(group.GetQuestions()))
 			return group.GetQuestions()[nq]
 		}
 	}
 	return nil
+}
+
+func getQuestionInChapter(lv hamquestions.Level, ch string) *proto.Question {
+	selectedpool := mapToLevelQuestionPool(lv)
+
+	qn := rand.Intn(len(selectedpool.SubelementMap[strings.ToUpper(string(ch[0:2]))].
+		GetGroupMap()[strings.ToUpper(string(ch[2]))].
+		GetQuestions()))
+	return selectedpool.SubelementMap[strings.ToUpper(string(ch[0:2]))].
+		GetGroupMap()[strings.ToUpper(string(ch[2]))].
+		GetQuestions()[qn]
+}
+
+func mapToLevelQuestionPool(lv hamquestions.Level) *proto.CompleteQuestionPool {
+	if lv == hamquestions.Tech {
+		return techQuestionsPool
+	} else if lv == hamquestions.General {
+		return generalQuestionPool
+	} else if lv == hamquestions.Extra {
+		return extraQuestionPool
+	} else {
+		panic("wtf")
+	}
+}
+
+func mapToLevelTitle(lv hamquestions.Level) *proto.AllTitles {
+	if lv == hamquestions.Tech {
+		return techQuestionTitles
+	} else if lv == hamquestions.General {
+		return generalQuestionTitles
+	} else if lv == hamquestions.Extra {
+		return extraQuestionTitles
+	} else {
+		panic("wtf")
+	}
+}
+
+func mapToLevelEnum(level string) hamquestions.Level {
+	switch level {
+	case "T":
+		return hamquestions.Tech
+	case "G":
+		return hamquestions.General
+	case "E":
+		return hamquestions.Extra
+	}
+	panic("wtf")
 }

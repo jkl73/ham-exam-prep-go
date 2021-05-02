@@ -16,13 +16,13 @@ function App() {
       <Router>
         <Switch>
           <Route path="/tech">
-            <HamQuestion level = "tech"/>
+            <HamQuestion level = "T"/>
           </Route>
           <Route path="/general">
-            <HamQuestion level = "general"/>
+            <HamQuestion level = "G"/>
           </Route>
           <Route path="/extra">
-            <HamQuestion level = "extra"/>
+            <HamQuestion level = "E"/>
           </Route>
           <Route path="/">
             <WelcomePage />

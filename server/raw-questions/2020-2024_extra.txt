@@ -365,7 +365,8 @@ Which of the following amateur stations may transmit one-way communications?
 A. A space station, beacon station, or telecommand station
 B. A local repeater or linked repeater station
 C. A message forwarding station or automatically controlled digital station
-D. All these choices are correct 
+D. All these choices are correct
+~~
 E1E - Volunteer examiner program: definitions; qualifications; preparation and administration of exams; accreditation; question pools; documentation requirements
 E1E01 (A) [97.527]
 For which types of out-of-pocket expenses do the Part 97 rules state that VEs and VECs may be reimbursed?

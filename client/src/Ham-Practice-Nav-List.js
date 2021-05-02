@@ -6,11 +6,14 @@ import { baseURL } from "./api-config"
 
 let endpoint = baseURL;
 let qpb = require('./ham-questions-pool_pb');
+let lv;
 
 class HamNavList extends Component {
 
     constructor(props) {
         super(props);
+
+        lv = props.level
 
         this.state = {
             titlesL1:["..."],
@@ -25,7 +28,7 @@ class HamNavList extends Component {
     }
 
     getTitles = () =>{
-        axios.get(endpoint + "/api/gettitles", {responseType:'arraybuffer'}).then(res => {
+        axios.get(endpoint + "/api/gettitles?level=" + lv + "&", {responseType:'arraybuffer'}).then(res => {
             if (res.data) {
                 let tt = qpb.AllTitles.deserializeBinary(res.data)
                 tt = tt.getSubelementsList()

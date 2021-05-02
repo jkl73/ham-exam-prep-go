@@ -16,11 +16,15 @@ let reddd = "rgb(240,128,128)";
 let backstack = [];
 let frontstack = [];
 
+let lv;
+
 class HamPractice extends Component {
     constructor(props) {
         super(props);
 
         this.navRef = React.createRef();
+
+        lv = props.level
 
         this.state = {
             questionInfo: {
@@ -97,6 +101,7 @@ class HamPractice extends Component {
     getQuestion = (parapPayload) => {        
         let param = ""
         param += this.state.prioWrong ? "prioWrong=1&" : ""
+        param += "level=" + lv + "&"
 
         if (parapPayload != undefined) {
             // create param for get quesiton request
@@ -200,7 +205,7 @@ class HamPractice extends Component {
                                         Chapter Selection (next question are pulled randomly, might get a repeated one)
                                     </Accordion.Title>
                                     <Accordion.Content active={activeIndex === 0}>
-                                        <HamNavList ref={this.navRef}/>
+                                        <HamNavList ref={this.navRef} level={lv}/>
                                     </Accordion.Content>
                                 </Accordion>
                             </Box>

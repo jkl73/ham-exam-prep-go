@@ -1,5 +1,5 @@
-SUBELEMENT G1 – COMMISSION’S RULES [5 Exam Questions – 5 Groups]
-G1A – General class control operator frequency privileges; primary and secondary allocations
+SUBELEMENT G1 - COMMISSION’S RULES [5 Exam Questions - 5 Groups]
+G1A - General class control operator frequency privileges; primary and secondary allocations
 G1A01 (C) [97.301(d)]
 On which HF/MF bands is a General class license holder granted all amateur frequency privileges?
 A. 60 meters, 20 meters, 17 meters, and 12 meters
@@ -113,7 +113,7 @@ B. The portion between 28.1 MHz and 28.2 MHz
 C. The portion between 28.3 MHz and 28.5 MHz
 D. The portion above 29.5 MHz
 ~~
-G1B – Antenna structure limitations; good engineering and good amateur practice; beacon operation; prohibited
+G1B - Antenna structure limitations; good engineering and good amateur practice; beacon operation; prohibited
 transmissions; retransmitting radio signals
 G1B01 (C) [97.15(a)]
 What is the maximum height above ground to which an antenna structure may be erected without requiring
@@ -205,7 +205,7 @@ that they object to such communications
 C. When the contact is with amateurs in any country as long as the communication is conducted in English
 D. Only when the foreign country is a member of the International Amateur Radio Union
 ~~
-G1C – Transmitter power regulations; data emission standards; 60-meter operation requirements
+G1C - Transmitter power regulations; data emission standards; 60-meter operation requirements
 G1C01 (A) [97.313(c)(1)]
 What is the maximum transmitting power an amateur station may use on 10.140 MHz?
 A. 200 watts PEP output
@@ -314,7 +314,7 @@ B. Average
 C. Forward
 D. PEP
 ~~
-G1D – Volunteer Examiners and Volunteer Examiner Coordinators; temporary identification; element credit
+G1D - Volunteer Examiners and Volunteer Examiner Coordinators; temporary identification; element credit
 G1D01 (A) [97.501, 97.505(a)]
 Who may receive partial credit for the elements represented by an expired Amateur Radio license?
 A. Any person who can demonstrate that they once held an FCC-issued General, Advanced, or Amateur Extra
@@ -394,14 +394,14 @@ C. 21 years
 D. There is no age limit
 ~~
 G1D11 (D) [97.505]
-What is required to obtain a new General Class license after a previously-held license has expired and the twoyear grace period has passed?
+What is required to obtain a new General Class license after a previously-held license has expired and the two year grace period has passed?
 A. They must have a letter from the FCC showing they once held an amateur or commercial license
 B. There are no requirements other than being able to show a copy of the expired license
 C. The applicant must be able to produce a copy of a page from a call book published in the U.S. showing his or
 her name and address
 D. The applicant must pass the current Element 2 exam
 ~~
-G1E – Control categories; repeater regulations; third-party rules; ITU regions; automatically controlled digital
+G1E - Control categories; repeater regulations; third-party rules; ITU regions; automatically controlled digital
 station
 G1E01 (A) [97.115(b)(2)]
 Which of the following would disqualify a third party from participating in stating a message over an amateur
@@ -489,8 +489,8 @@ B. Anywhere in the non-phone segments of the 10-meter or shorter wavelength band
 C. Only in the non-phone Extra Class segments of the bands
 D. Anywhere in the 6-meter or shorter wavelength bands, and in limited segments of some of the HF bands
 ~~
-SUBELEMENT G2 – OPERATING PROCEDURES [5 Exam Questions – 5 Groups]
-G2A – Phone operating procedures; USB/LSB conventions; breaking into a contact; VOX operation
+SUBELEMENT G2 - OPERATING PROCEDURES [5 Exam Questions - 5 Groups]
+G2A - Phone operating procedures; USB/LSB conventions; breaking into a contact; VOX operation
 G2A01 (A)
 Which sideband is most commonly used for voice communications on frequencies of 14 MHz or higher?
 A. Upper sideband
@@ -577,7 +577,7 @@ B. Transmit audio or microphone gain
 C. Antenna inductance or capacitance
 D. Attenuator level
 ~~
-G2B – Operating courtesy; band plans; emergencies, including drills and emergency communications
+G2B - Operating courtesy; band plans; emergencies, including drills and emergency communications
 G2B01 (C) [97.101(b), (c)]
 Which of the following is true concerning access to frequencies?
 A. Nets always have priority
@@ -666,7 +666,7 @@ B. Only frequencies authorized for RACES or ARES stations
 C. Only frequencies that are within your operating privileges
 D. Only frequencies used by police, fire, or emergency medical services
 ~~
-G2C – CW operating procedures and procedural signals; Q signals and common abbreviations: full break-in
+G2C - CW operating procedures and procedural signals; Q signals and common abbreviations: full break-in
 G2C01 (D)
 Which of the following describes full break-in telegraphy (QSK)?
 A. Breaking stations send the Morse code prosign “BK”
@@ -744,7 +744,7 @@ B. There is interference on the frequency
 C. I am quitting for the day
 D. I am ready to receive messages
 ~~
-G2D – Volunteer Monitoring Program; HF operations
+G2D - Volunteer Monitoring Program; HF operations
 G2D01 (A)
 What is the Volunteer Monitoring Program?
 A. Amateur volunteers who are formally enlisted to monitor the airwaves for rules violations
@@ -828,7 +828,7 @@ B. World-wide propagation during the daylight hours
 C. Heavy distortion on signals due to photon absorption
 D. High levels of atmospheric noise or “static”
 ~~
-G2E – Digital operating procedures
+G2E - Digital operating procedures
 G2E01 (D)
 Which mode is normally used when sending RTTY signals via AFSK with an SSB transmitter?
 A. USB
@@ -876,10 +876,10 @@ D. 850 Hz
 ~~
 G2E07 (A)
 What segment of the 80-meter band is most commonly used for digital transmissions?
-A. 3570 – 3600 kHz
-B. 3500 – 3525 kHz
-C. 3700 – 3750 kHz
-D. 3775 – 3825 kHz
+A. 3570 - 3600 kHz
+B. 3500 - 3525 kHz
+C. 3700 - 3750 kHz
+D. 3775 - 3825 kHz
 ~~
 G2E08 (D)
 In what segment of the 20-meter band are most PSK31 operations commonly found?
@@ -938,8 +938,8 @@ B. Computer time accurate within approximately 1 second
 C. Receiver attenuator set to -12 dB
 D. A vertically polarized antenna
 ~~
-SUBELEMENT G3 – RADIO WAVE PROPAGATION [3 Exam Questions – 3 Groups]
-G3A – Sunspots and solar radiation; ionospheric disturbances; propagation forecasting and indices
+SUBELEMENT G3 - RADIO WAVE PROPAGATION [3 Exam Questions - 3 Groups]
+G3A - Sunspots and solar radiation; ionospheric disturbances; propagation forecasting and indices
 G3A01 (A)
 What is the significance of the sunspot number with regard to HF propagation?
 A. Higher sunspot numbers generally indicate a greater probability of good propagation at higher frequencies
@@ -1042,7 +1042,7 @@ B. HF communications are disturbed
 C. VHF/UHF ducting is improved
 D. VHF/UHF ducting is disturbed
 ~~
-G3B – Maximum Usable Frequency; Lowest Usable Frequency; propagation
+G3B - Maximum Usable Frequency; Lowest Usable Frequency; propagation
 G3B01 (D)
 What is a characteristic of skywave signals arriving at your location by both short-path and long-path
 propagation?
@@ -1125,7 +1125,7 @@ B. HF communications over the path are enhanced
 C. Double hop propagation along the path is more common
 D. Propagation over the path on all HF frequencies is enhanced
 ~~
-G3C – Ionospheric layers; critical angle and frequency; HF scatter; Near Vertical Incidence Skywave
+G3C - Ionospheric layers; critical angle and frequency; HF scatter; Near Vertical Incidence Skywave
 G3C01 (A)
 Which ionospheric layer is closest to the surface of Earth?
 A. The D layer
@@ -1205,8 +1205,8 @@ B. The F1 layer
 C. The E layer
 D. The D layer
 ~~
-SUBELEMENT G4 – AMATEUR RADIO PRACTICES [5 Exam Questions – 5 groups]
-G4A – Station operation and setup
+SUBELEMENT G4 - AMATEUR RADIO PRACTICES [5 Exam Questions - 5 groups]
+G4A - Station operation and setup
 G4A01 (B)
 What is the purpose of the “notch filter” found on many HF transceivers?
 A. To restrict the transmitter voice bandwidth
@@ -1330,7 +1330,7 @@ B. Received frequency may become unstable
 C. CW signals may become severely attenuated
 D. Received frequency may shift several kHz
 ~~
-G4B – Test and monitoring equipment; two-tone test
+G4B - Test and monitoring equipment; two-tone test
 G4B01 (D)
 What item of test equipment contains horizontal and vertical channel amplifiers?
 A. An ohmmeter
@@ -1440,7 +1440,7 @@ B. Percentage of suppression of carrier and undesired sideband for SSB
 C. Percentage of frequency modulation
 D. Percentage of carrier phase shift
 ~~
-G4C – Interference to consumer electronics; grounding; DSP
+G4C - Interference to consumer electronics; grounding; DSP
 G4C01 (B)
 Which of the following might be useful in reducing RF interference to audio frequency devices?
 A. Bypass inductor
@@ -1535,7 +1535,7 @@ B. It prevents signal overload
 C. It ensures that the neutral wire is grounded
 D. It ensures that hazardous voltages cannot appear on the chassis
 ~~
-G4D – Speech processors; S meters; sideband operation near band edges
+G4D - Speech processors; S meters; sideband operation near band edges
 G4D01 (A)
 What is the purpose of a speech processor as used in a modern transceiver?
 A. Increase the intelligibility of transmitted phone signals during poor conditions
@@ -1619,7 +1619,7 @@ B. At least 3 kHz below the edge of the band
 C. At least 1 kHz above the edge of the segment
 D. At least 1 kHz below the edge of the segment
 ~~
-G4E – HF mobile radio installations; alternative energy source operation
+G4E - HF mobile radio installations; alternative energy source operation
 G4E01 (C)
 What is the purpose of a capacitance hat on a mobile antenna?
 A. To increase the power handling capacity of a whip antenna
@@ -1701,8 +1701,8 @@ B. The voltage and current ratings of such systems are not compatible with amate
 C. A large energy storage system is needed to supply power when the wind is not blowing
 D. All these choices are correct
 ~~
-SUBELEMENT G5 – ELECTRICAL PRINCIPLES [3 Exam Questions – 3 Groups]
-G5A – Reactance; inductance; capacitance; impedance; impedance matching
+SUBELEMENT G5 - ELECTRICAL PRINCIPLES [3 Exam Questions - 3 Groups]
+G5A - Reactance; inductance; capacitance; impedance; impedance matching
 G5A01 (C)
 What is impedance?
 A. The electric charge stored by a capacitor
@@ -1781,7 +1781,7 @@ B. Reduce the power output of the first circuit
 C. Increase the power output of the first circuit
 D. Insert a circulator between the two circuits
 ~~
-G5B – The decibel; current and voltage dividers; electrical power calculations; sine wave root-mean-square
+G5B - The decibel; current and voltage dividers; electrical power calculations; sine wave root-mean-square
 (RMS) values; PEP calculations
 G5B01 (B)
 What dB change represents a factor of two increase or decrease in power?
@@ -1885,7 +1885,7 @@ B. 625 watts
 C. 2500 watts
 D. 5000 watts
 ~~
-G5C – Resistors, capacitors, and inductors in series and parallel; transformers
+G5C - Resistors, capacitors, and inductors in series and parallel; transformers
 G5C01 (C)
 What causes a voltage to appear across the secondary winding of a transformer when an AC voltage source is
 connected across its primary winding?
@@ -2018,8 +2018,8 @@ B. 0.47
 C. 47,000
 D. 4.7
 ~~
-SUBELEMENT G6 – CIRCUIT COMPONENTS [2 Exam Questions – 2 Groups]
-G6A – Resistors; capacitors; inductors; rectifiers; solid-state diodes and transistors; vacuum tubes; batteries
+SUBELEMENT G6 - CIRCUIT COMPONENTS [2 Exam Questions - 2 Groups]
+G6A - Resistors; capacitors; inductors; rectifiers; solid-state diodes and transistors; vacuum tubes; batteries
 G6A01 (C)
 What is the minimum allowable discharge voltage for maximum life of a standard 12 volt lead-acid battery?
 A. 6 volts
@@ -2118,7 +2118,7 @@ B. High stability
 C. High capacitance for given volume
 D. Comparatively low cost
 ~~
-G6B – Analog and digital integrated circuits (ICs); memory; I/O devices; microwave ICs (MMICs); display
+G6B - Analog and digital integrated circuits (ICs); memory; I/O devices; microwave ICs (MMICs); display
 devices; connectors; ferrite cores
 G6B01 (C)
 What determines the performance of a ferrite core at different frequencies?
@@ -2211,8 +2211,8 @@ B. RJ-11
 C. PL-259
 D. DB-25
 ~~
-SUBELEMENT G7 – PRACTICAL CIRCUITS [3 Exam Questions – 3 Groups]
-G7A – Power supplies; schematic symbols
+SUBELEMENT G7 - PRACTICAL CIRCUITS [3 Exam Questions - 3 Groups]
+G7A - Power supplies; schematic symbols
 G7A01 (B)
 What useful feature does a power supply bleeder resistor provide?
 A. It acts as a fuse for excess voltage
@@ -2304,7 +2304,7 @@ B. Symbol 11
 C. Symbol 6
 D. Symbol 1
 ~~
-G7B – Digital circuits; amplifiers and oscillators
+G7B - Digital circuits; amplifiers and oscillators
 G7B01 (B)
 What is the reason for neutralizing the final amplifier stage of a transmitter?
 A. To limit the modulation index
@@ -2382,7 +2382,7 @@ B. FM
 C. AM
 D. All these choices are correct
 ~~
-G7C – Receivers and transmitters; filters; oscillators
+G7C - Receivers and transmitters; filters; oscillators
 G7C01 (B)
 Which of the following is used to process signals from the balanced modulator then send them to the mixer in
 some single sideband phone transmitters?
@@ -2501,8 +2501,8 @@ B. A digital voltmeter
 C. A digital mode interface between a computer and a transceiver
 D. A high-sensitivity radio direction finder
 ~~
-SUBELEMENT G8 – SIGNALS AND EMISSIONS [3 Exam Questions – 3 Groups]
-G8A – Carriers and modulation: AM; FM; single sideband; modulation envelope; digital modulation;
+SUBELEMENT G8 - SIGNALS AND EMISSIONS [3 Exam Questions - 3 Groups]
+G8A - Carriers and modulation: AM; FM; single sideband; modulation envelope; digital modulation;
 overmodulation
 G8A01 (B)
 How is an FSK signal generated?
@@ -2589,7 +2589,7 @@ B. FT8
 C. AMTOR
 D. MFSK32
 ~~
-G8B – Frequency mixing; multiplication; bandwidths of various modes; deviation; duty cycle; intermodulation
+G8B - Frequency mixing; multiplication; bandwidths of various modes; deviation; duty cycle; intermodulation
 G8B01 (B)
 Which mixer input is varied or tuned to convert signals of different frequencies to an intermediate frequency
 (IF)?
@@ -2679,7 +2679,7 @@ B. Heterodyning
 C. Detection
 D. Rolloff
 ~~
-G8C – Digital emission modes
+G8C - Digital emission modes
 G8C01 (C)
 On what band do amateurs share channels with the unlicensed Wi-Fi service?
 A. 432 MHz
@@ -2779,8 +2779,8 @@ B. Frequency is vertical, signal strength is intensity, time is horizontal
 C. Frequency is horizontal, signal strength is intensity, time is vertical
 D. Frequency is vertical, signal strength is horizontal, time is intensity
 ~~
-SUBELEMENT G9 – ANTENNAS AND FEED LINES [4 Exam Questions – 4 Groups]
-G9A – Antenna feed lines: characteristic impedance and attenuation; SWR calculation, measurement, and
+SUBELEMENT G9 - ANTENNAS AND FEED LINES [4 Exam Questions - 4 Groups]
+G9A - Antenna feed lines: characteristic impedance and attenuation; SWR calculation, measurement, and
 effects; matching networks
 G9A01 (A)
 Which of the following factors determine the characteristic impedance of a parallel conductor antenna feed
@@ -2878,7 +2878,7 @@ B. The higher the transmission line loss, the more the SWR will read artificiall
 C. The higher the transmission line loss, the more accurate the SWR measurement will be
 D. Transmission line loss does not affect the SWR measurement
 ~~
-G9B – Basic antennas
+G9B - Basic antennas
 G9B01 (B)
 What is one disadvantage of a directly fed random-wire HF antenna?
 A. It must be longer than 1 wavelength
@@ -2967,7 +2967,7 @@ B. 11 feet
 C. 16 feet
 D. 21 feet
 ~~
-G9C – Directional antennas
+G9C - Directional antennas
 G9C01 (A)
 Which of the following would increase the bandwidth of a Yagi antenna?
 A. Larger-diameter elements
@@ -3086,7 +3086,7 @@ matching
 C. It is a series capacitor selected to cancel the inductive reactance of a folded dipole antenna
 D. It is a section of 300 ohm twinlead used to match a folded dipole antenna
 ~~
-G9D – Specialized antennas
+G9D - Specialized antennas
 G9D01 (A)
 Which of the following antenna types will be most effective as a Near Vertical Incidence Skywave (NVIS)
 antenna for short-skip communications on 40 meters during the day?
@@ -3181,8 +3181,8 @@ B. Four major loops with deep nulls
 C. Virtually omnidirectional with a lower peak vertical radiation angle than a dipole
 D. Radiation maximum is straight up
 ~~
-SUBELEMENT G0 – ELECTRICAL AND RF SAFETY [2 Exam Questions – 2 Groups]
-G0A – RF safety principles, rules and guidelines; routine station evaluation
+SUBELEMENT G0 - ELECTRICAL AND RF SAFETY [2 Exam Questions - 2 Groups]
+G0A - RF safety principles, rules and guidelines; routine station evaluation
 G0A01 (A)
 What is one way that RF energy can affect human body tissue?
 A. It heats body tissue
@@ -3264,7 +3264,7 @@ B. Position the antenna along the edge of a wall to reduce parasitic radiation
 C. Make sure that MPE limits are not exceeded in occupied areas
 D. Make sure the antenna is properly shielded
 ~~
-G0B – Station safety: electrical shock, safety grounding, fusing, interlocks, wiring, antenna and tower safety
+G0B - Station safety: electrical shock, safety grounding, fusing, interlocks, wiring, antenna and tower safety
 G0B01 (A)
 Which wire or wires in a four-conductor connection should be attached to fuses or circuit breakers in a device
 operated from a 240 VAC single phase source?

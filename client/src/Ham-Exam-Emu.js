@@ -11,9 +11,12 @@ let palegreen = "rgb(190,251,152)";
 let bluuu = "rgba(135,200,230,12)";
 let reddd = "rgb(240,128,128)";
 
+let lv;
+
 class HamExamEmu extends Component {
     constructor(props) {
         super(props);
+        lv = props.level
 
         this.state = {
             questionsInfoAndState: [], // all questions context
@@ -115,6 +118,7 @@ class HamExamEmu extends Component {
     getExamQuestions = () => {
         let param = ""
         param += this.state.prioWrong ? "prioWrong=1&" : ""
+        param += "level=" + lv + "&"
 
         axios.get(endpoint + "/api/exam?" + param, {responseType:'arraybuffer'}).then(res => {
             let examliststate = []

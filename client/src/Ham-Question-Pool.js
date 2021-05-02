@@ -59,18 +59,17 @@ TabPanel.propTypes = {
 class HamQuestion extends Component {
     constructor(props) {
         super(props);
-
         lv = props.level
 
-        if (lv == "tech") {
+        if (lv == "T") {
           leveltitle = "Technician"
-          appbarcolor = "green"
-        } else if (lv == "general") {
+          appbarcolor = "#0bbf3b"
+        } else if (lv == "G") {
           leveltitle = "General"
-          appbarcolor = "blue"
-        } else if (lv == "extra") {
+          appbarcolor = "#3b36f7"
+        } else if (lv == "E") {
           leveltitle = "Amateur Extra"
-          appbarcolor = "red"
+          appbarcolor = "#De3f43"
         }
 
         this.state = {
@@ -108,15 +107,15 @@ class HamQuestion extends Component {
             </AppBar>
 
             <TabPanel value={this.state.tabValue} index={0}>
-              <HamPractice></HamPractice>
+              <HamPractice level={lv}></HamPractice>
             </TabPanel>
             
             <TabPanel value={this.state.tabValue} index={1}>
-              <HamExamEmu></HamExamEmu>
+              <HamExamEmu level={lv}></HamExamEmu>
             </TabPanel>
 
             <TabPanel value={this.state.tabValue} index={2}>
-              <HamStats></HamStats>
+              <HamStats level={lv}></HamStats>
             </TabPanel>
           </div>
         );
