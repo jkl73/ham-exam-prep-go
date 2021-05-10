@@ -17,9 +17,9 @@ import (
 	"github.com/jkl73/arrl-ham-questions-pool-proto/proto"
 )
 
-const techFile = "./server/raw-questions/2018-2022_technician.txt"
-const generalFile = "./server/raw-questions/2019-2023_general.txt"
-const extraFile = "./server/raw-questions/2020-2024_extra.txt"
+const techFile = "./server/files/2018-2022_technician.txt"
+const generalFile = "./server/files/2019-2023_general.txt"
+const extraFile = "./server/files/2020-2024_extra.txt"
 
 const qchapter = "chapter"
 
